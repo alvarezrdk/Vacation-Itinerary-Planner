@@ -3,10 +3,39 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Profile {
     _id: ID
-    name: String
-    email: String
-    password: String
+    name: String!
+    email: String!
+    password: String!
     skills: [String]!
+  }
+
+  type Itinerary {
+    _id: ID
+    location: String!
+    startDate: String!
+    endDate: String!
+    airbnbAddress: String!
+    airbnbCheckInDate: String!
+    airbnbCheckOutDate: String!
+    restaurants: [String]!
+    experiences: [String]!
+  }
+
+  type Restaurants {
+    _id: ID
+    name: String!
+    cuisine: String
+    location: String!
+    reservationDate: String!
+    reservationTime: String!
+  }
+
+  type Experiences {
+    _id: ID
+    name: String!
+    location: String!
+    date: String!
+    time: String!
   }
 
   type Auth {
