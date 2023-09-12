@@ -6,7 +6,6 @@ const typeDefs = gql`
     name: String!
     email: String!
     password: String!
-    skills: [String]!
   }
 
   type Itinerary {
@@ -53,10 +52,18 @@ const typeDefs = gql`
   type Mutation {
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-
-    addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
-    removeSkill(skill: String!): Profile
+    createItinerary(location: String!, startDate: String!, endDate: String!, airbnbAddress: String!, airbnbCheckInDate: String!, airbnbCheckOutDate: String!, guests: Int): Itinerary
+    createRestraunt(name: String!, cuisine: String!, location: String!, reservationDate: String!, reservationTime: String!, guests: String!): Restaurants
+    createEx(name: String!, location: String!, date: String!, time: String!, guests: String!): Experiences
+    addRestrauntToItinerary(
+      itineraryId: ID!
+      restaurantId: ID!
+    ): Itinerary
+    addExToItinerary(
+      itineraryId: ID!
+      exId: ID!
+    ): Itinerary
   }
 `;
 
