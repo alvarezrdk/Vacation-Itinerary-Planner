@@ -22,6 +22,10 @@ const experiencesSchema = new Schema({
         required: true,
         trim: true,
     },
+    guests: {
+        type: Int,
+        trim: true,
+    }
 });
 
 const Experiences = model('Experiences', experiencesSchema);

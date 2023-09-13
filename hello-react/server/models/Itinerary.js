@@ -16,6 +16,10 @@ const itinerarySchema = new Schema({
         required: true,
         trim: true,
     },
+    guests: {
+        type: Int,
+        trim: true,
+    },
     airbnbAddress: {
         type: String,
         required: true,
