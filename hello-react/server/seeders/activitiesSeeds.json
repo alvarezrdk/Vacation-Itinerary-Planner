@@ -1,0 +1,62 @@
+{
+  "denver_activities": [
+    {
+      "name": "Hiking Adventure",
+      "location": "Rocky Mountain National Park, Colorado",
+      "description": "Embark on a thrilling hiking adventure in the scenic Rocky Mountain National Park. Explore breathtaking mountain vistas, pristine alpine lakes, and lush forests.",
+      "duration_hours": 6,
+      "price": 75.00
+    },
+    {
+      "name": "Art Gallery Tour",
+      "location": "Denver Art District, Denver, Colorado",
+      "description": "Discover the vibrant art scene of Denver with a guided tour of the city's renowned art galleries. View a diverse collection of contemporary and traditional artworks.",
+      "duration_hours": 2,
+      "price": 30.00
+    },
+    {
+      "name": "Hot Air Balloon Ride",
+      "location": "Colorado Springs, Colorado",
+      "description": "Soar high above the picturesque Colorado Springs landscape in a hot air balloon. Enjoy breathtaking views of Pikes Peak and the surrounding scenery.",
+      "duration_hours": 3,
+      "price": 150.00
+    },
+    {
+      "name": "Culinary Tasting Experience",
+      "location": "Downtown Denver, Colorado",
+      "description": "Savor a delightful culinary journey through the heart of Denver. Sample gourmet dishes from top-rated restaurants and experience the city's food culture.",
+      "duration_hours": 4,
+      "price": 100.00
+    },
+    {
+      "name": "Rock Climbing Adventure",
+      "location": "Eldorado Canyon State Park, Colorado",
+      "description": "Challenge yourself with a thrilling rock climbing adventure in the stunning Eldorado Canyon State Park. Climb world-famous rock formations with expert guides.",
+      "duration_hours": 5,
+      "price": 120.00
+    }
+  ],
+  "miami_activities": [
+    {
+      "name": "Beach Getaway - Miami",
+      "location": "Miami Beach, Miami, Florida",
+      "description": "Escape to the beautiful beaches of Miami. Relax in the sun, swim in the turquoise waters, and enjoy the vibrant beach culture of Miami Beach.",
+      "duration_hours": 8,
+      "price": 120.00
+    },
+    {
+      "name": "Art Deco Walking Tour - Miami",
+      "location": "South Beach, Miami, Florida",
+      "description": "Explore the iconic Art Deco architecture of Miami's South Beach. Take a guided walking tour through historic streets and learn about the city's artistic heritage.",
+      "duration_hours": 2,
+      "price": 35.00
+    },
+    {
+      "name": "Everglades Airboat Adventure - Miami",
+      "location": "Everglades National Park, Miami, Florida",
+      "description": "Experience the thrill of an airboat ride in the Everglades. Discover the unique ecosystem of the Everglades and spot wildlife in their natural habitat.",
+      "duration_hours": 3,
+      "price": 75.00
+    }
+  ]
+}
