@@ -1,0 +1,86 @@
+{
+  "denver_restaurants": [
+    {
+      "name": "Frasca Food and Wine",
+      "address": "1738 Pearl St, Boulder, CO",
+      "cuisine": "Italian",
+      "phone": "555-123-4567",
+      "website": "http://www.frascasfoodandwine.com",
+      "rating": 4.8
+    },
+    {
+      "name": "Acorn",
+      "address": "3350 Brighton Blvd, Denver, CO",
+      "cuisine": "Eclectic",
+      "phone": "555-234-5678",
+      "website": "http://www.acorndenver.com",
+      "rating": 4.5
+    },
+    {
+      "name": "Root Down",
+      "address": "1600 W 33rd Ave, Denver, CO",
+      "cuisine": "Farm-to-Table",
+      "phone": "555-345-6789",
+      "website": "http://www.rootdowndenver.com",
+      "rating": 4.7
+    },
+    {
+      "name": "The Capital Grille",
+      "address": "1450 Larimer St, Denver, CO",
+      "cuisine": "Steakhouse",
+      "phone": "555-456-7890",
+      "website": "http://www.thecapitalgrille.com",
+      "rating": 4.9
+    },
+    {
+      "name": "Linger",
+      "address": "2030 W 30th Ave, Denver, CO",
+      "cuisine": "Global Fusion",
+      "phone": "555-567-8901",
+      "website": "http://www.lingerdenver.com",
+      "rating": 4.6
+    }
+  ],
+  "miami_restaurants": [
+    {
+      "name": "Joe's Stone Crab",
+      "cuisine": "Seafood",
+      "address": "11 Washington Ave, Miami Beach, FL",
+      "phone": "305-673-0365",
+      "website": "http://www.joesstonecrab.com",
+      "rating": 4.8
+    },
+    {
+      "name": "Versailles Restaurant",
+      "cuisine": "Cuban",
+      "address": "3555 SW 8th St, Miami, FL",
+      "phone": "305-444-0240",
+      "website": "http://www.versaillesrestaurant.com",
+      "rating": 4.6
+    },
+    {
+      "name": "Komodo",
+      "cuisine": "Asian Fusion",
+      "address": "801 Brickell Ave, Miami, FL",
+      "phone": "305-534-2211",
+      "website": "http://www.komodomiami.com",
+      "rating": 4.5
+    },
+    {
+      "name": "Yardbird Southern Table & Bar",
+      "cuisine": "Southern",
+      "address": "1600 Lenox Ave, Miami Beach, FL",
+      "phone": "305-538-5220",
+      "website": "http://www.yardbirdrestaurant.com",
+      "rating": 4.7
+    },
+    {
+      "name": "La Mar by Gaston Acurio",
+      "cuisine": "Peruvian",
+      "address": "500 Brickell Key Dr, Miami, FL",
+      "phone": "305-913-8358",
+      "website": "http://www.lamarmiami.com",
+      "rating": 4.4
+    }
+  ]
+}
