@@ -4,25 +4,18 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
-    },
-
-    profile: async (parent, { profileId }) => {
+    singleProfile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
-    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return Profile.findOne({ _id: context.user._id });
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    allProfiles: async () => {
+      return Profile.find();
     },
+    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
   },
 
   Mutation: {
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+    createUser: async (parent, { username, email, password }) => {
+      const profile = await Profile.create({ username, email, password });
       const token = signToken(profile);
 
       return { token, profile };
@@ -49,7 +42,7 @@ const resolvers = {
       return itinerary;
     },
 
-    createRestraunt: async (parent, { name, cuisine, location, reservationDate, reservationTime, guests }) => {
+    createRestaurant: async (parent, { name, cuisine, location, reservationDate, reservationTime, guests }) => {
       const restaurant = await Restaurants.create({ name, cuisine, location, reservationDate, reservationTime, guests });
       return restaurant;
     },
@@ -59,7 +52,7 @@ const resolvers = {
       return ex;
     },
 
-    addRestrauntToItinerary: async (parent, {itineraryId, restaurantId} ) => {
+    addRestaurantToItinerary: async (parent, {itineraryId, restaurantId} ) => {
       const itinerary = await Itinerary.findOneAndUpdate(
         { _id: itineraryId },
         {
@@ -93,6 +86,36 @@ const resolvers = {
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
+    },
+    deleteItinerary: async (parent, { itineraryId }) => {
+      const existingItinerary = await Itinerary.findById(itineraryId);
+    
+      if (!existingItinerary) {
+        throw new Error("Itinerary not found");
+      }
+          await Itinerary.findByIdAndDelete(itineraryId);
+    
+      return "Itinerary deleted successfully";
+    },
+    deleteRestaurant: async (parent, { restaurantId }) => {
+      const existingRestaurant = await Restaurants.findById(restaurantId);
+    
+      if (!existingRestaurant) {
+        throw new Error("Restaurant not found");
+      }
+          await Restaurants.findByIdAndDelete(restaurantId);
+    
+      return "Restaurant deleted successfully";
+    },
+    deleteEx: async (parent, { exId }) => {
+      const existingExperience = await Experiences.findById(exId);
+    
+      if (!existingExperience) {
+        throw new Error("Experience not found");
+      }
+          await Experiences.findByIdAndDelete(exId);
+    
+      return "Experience deleted successfully";
     },
   },
 };
