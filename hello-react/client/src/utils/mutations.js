@@ -1,21 +1,31 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_USER = gql`
-  mutation createUser($username: String!, $password: String!) {
-    createUser(username: $username, password: $password) {
-      id
-      username
-      email
+export const ADD_USER = gql`
+  mutation addUser($username: String!, $email: String!, $password: String!) {
+    addUser(username: $username, email: $email, password: $password) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+      }
     }
   }
 `;
 
 export const CREATE_ITINERARY = gql`
-  mutation createItinerary($userId: ID!, $title: String!, $description: String!) {
-    createItinerary(userId: $userId, title: $title, description: $description) {
-      id
-      title
-      description
+  mutation createItinerary($location: String!, $startDate: String!, $endDate: String!, $airbnbAddress: String!, $airbnbCheckInDate: String!, $airbnbCheckOutDate: String!, $guests: String!) {
+    createItinerary(location: $location, startDate: $startDate, endDate: $endDate, airbnbAddress: $airbnbAddress, airbnbCheckInDate: $airbnbCheckInDate, airbnbCheckOutDate: $airbnbCheckOutDate, guests: $guests ) {
+      _id
     }
   }
 `;
@@ -30,88 +40,58 @@ export const UPDATE_ITINERARY = gql`
   }
 `;
 
-export const ADD_DESTINATION = gql`
-  mutation addDestination($itineraryId: ID!, $location: String!, $startDate: String!, $endDate: String!) {
-    addDestination(itineraryId: $itineraryId, location: $location, startDate: $startDate, endDate: $endDate) {
-      id
-      location
-      startDate
-      endDate
+export const CREATE_RESTAURANT = gql`
+  mutation createRestaurant($name: String!, $cuisine: String!, $location: String!, $reservationDate: String!, $reservationTime: String!, $guests: String!) {
+    createRestaurant(name: $name, cuisine: $cuisine, location: $location, reservationDate: $reservationDate, reservationTime: $reservationTime, guests: $guests) {
+      _id
     }
   }
 `;
 
-export const UPDATE_DESTINATION = gql`
-  mutation updateDestination($id: ID!, $location: String!, $startDate: String!, $endDate: String!) {
-    updateDestination(id: $id, location: $location, startDate: $startDate, endDate: $endDate) {
-      id
-      location
-      startDate
-      endDate
+export const CREATE_EX = gql`
+  mutation createRestaurant($name: String!, $cuisine: String!, $location: String!, $reservationDate: String!, $reservationTime: String!, $guests: String!) {
+    createRestaurant(name: $name, location: $location, reservationDate: $date, time: $time, guests: $guests) {
+      _id
     }
   }
 `;
 
-export const UPDATE_DESTINATION_DATES = gql`
-  mutation updateDestinationDates($id: ID!, $startDate: String!, $endDate: String!) {
-    updateDestinationDates(id: $id, startDate: $startDate, endDate: $endDate) {
-      id
-      startDate
-      endDate
+export const ADD_RESTAURANT_TO_ITINERARY = gql`
+  mutation addRestaurantToItinerary($itineraryId: ID!, $restaurantId: ID!) {
+    addRestaurantToItinerary(itineraryId: $itineraryId, restaurantId: $restaurantId) {
+      _id
     }
   }
 `;
 
-export const DELETE_DESTINATION = gql`
-  mutation deleteDestination($id: ID!) {
-    deleteDestination(id: $id)
-  }
-`;
-
-export const SEARCH_ITINERARIES = gql`
-  query searchItineraries($query: String!) {
-    searchItineraries(query: $query) {
-      id
-      title
-      description
+export const ADD_EX_TO_ITINERARY = gql`
+  mutation addExToItinerary($itineraryId: ID!, $exId: ID!) {
+    addExToItinerary(itineraryId: $itineraryId, exId: $exId) {
+      _id
     }
   }
 `;
 
-
-export const UPDATE_USER_PROFILE = gql`
-  mutation updateUserProfile($userId: ID!, $email: String!) {
-    updateUserProfile(userId: $userId, email: $email) {
-      id
-      username
-      email
-    }
-  }
-  `;
-  export const BOOK_RESTAURANT = gql`
-  mutation bookRestaurant($itineraryId: ID!, $restaurantName: String!, $reservationDate: String!, $numberOfGuests: Int!) {
-    bookRestaurant(itineraryId: $itineraryId, restaurantName: $restaurantName, reservationDate: $reservationDate, numberOfGuests: $numberOfGuests) {
-      id
-      restaurantName
-      reservationDate
-      numberOfGuests
+export const REMOVE_PROFILE = gql`
+  mutation removeProfile(_id: ID!) {
+    removeProfile(_id: $_id) {
+      _id
     }
   }
 `;
 
-export const CANCEL_RESTAURANT_RESERVATION = gql`
-  mutation cancelRestaurantReservation($reservationId: ID!) {
-    cancelRestaurantReservation(reservationId: $reservationId)
+export const DELETE_ITINERARY = gql`
+  mutation deleteItinerary($itineraryId: ID!) {
+    deleteItinerary(itineraryId: $itineraryId) {
+      _id
+    }
   }
 `;
 
-export const ADD_USER_REVIEW = gql`
-mutation addUserReview($itineraryId: ID!, $destinationId: ID!, $rating: Int!, $reviewText: String!) {
-  addUserReview(itineraryId: $itineraryId, destinationId: $destinationId, rating: $rating, reviewText: $reviewText) {
-    id
-    rating
-    reviewText
+export const DELETE_EX = gql`
+  mutation deleteEx($exId: ID!) {
+    deleteEx(exId: $exId) {
+      _id
+    }
   }
-}
-`
-;
+`;
