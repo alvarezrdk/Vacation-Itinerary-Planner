@@ -1,0 +1,112 @@
+:root {
+    --bg: #e2f3e3;
+    --bgAccent: #89cf8b;
+    --bg2: #c4e7c5;
+    --textColor: #327b35;
+    --textColorDark: #327b35;
+    --navSize: 60px;
+    --border: 5px solid #327b35;
+    --speed: 300ms;
+  }
+
+.profileMain {
+    background-color: var(--bg);
+    padding: 5vw;
+}
+
+.border {
+    border-bottom: 2px solid var(--bgAccent);
+}
+
+.profileCategory {
+    height: min-content;
+    padding: 1vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    display: flex;
+}
+
+.profileCategory p {
+    padding: .5vw;
+    font-size: 1.2vw;
+}
+
+.profileImageContainer {
+    width: min-content;
+    margin-right: 3vw;
+}
+
+.profileImage {
+    object-fit: cover;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    border: var(--textColorDark) solid 5px;
+}
+
+.profileItem {
+    flex: 1;
+    border-left: var(--bgAccent) solid 2px;
+    padding-left: 1vw;
+}
+
+.profileTripOverview {
+    margin-bottom: 1vw;
+    font-size: 1vw;
+}
+
+.subTitle {
+    margin-top: 5vw;
+}
+
+.tripsContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tripsItem {
+    height: min-content;
+    width: 43vw;
+    padding: 1vw;
+    padding-top: 5vw;
+    padding-bottom: 5vw;
+    display: flex;
+
+}
+
+.tripsItem p {
+    padding: .5vw;
+    font-size: 1.2vw;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}
+
+.upcomingTripsContainer {
+    margin-top: 5vw;
+    display: flex;
+    align-items: center;
+}
+
+.profileButton {
+    display: flex;
+    margin: 0 10vw;
+    font-size: 1.5vw;
+    padding: 1vw 1vw 1vw 0;
+    color: var(--bg);
+}
+
+.profileButton img {
+    width: 2vw;
+    margin: 0 1vw;
+    filter: invert(93%) sepia(12%) saturate(190%) hue-rotate(73deg) brightness(99%) contrast(99%)
+}
+
+/* .profileTripAbout {
+
+} */
