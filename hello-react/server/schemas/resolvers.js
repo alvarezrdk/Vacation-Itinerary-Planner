@@ -1,28 +1,27 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
+const { Profile, Itinerary, Restaurants, Experiences } = require('../models'); 
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
-    },
-
-    profile: async (parent, { profileId }) => {
+    singleProfile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
-    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return Profile.findOne({ _id: context.user._id });
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    allProfiles: async () => {
+      return Profile.find();
     },
+    allItineraries: async () => {
+      return Itinerary.find();
+    },
+    singleItinerary: async (parent, { itineraryId }) => {
+      return Itinerary.findOne({ _id: itineraryId });
+    },
+    // By adding context to our query, we can retrieve the logged in user without specifically searching for them
   },
 
   Mutation: {
-    addProfile: async (parent, { name, email, password }) => {
-      const profile = await Profile.create({ name, email, password });
+    createUser: async (parent, { username, email, password }) => {
+      const profile = await Profile.create({ username, email, password });
       const token = signToken(profile);
 
       return { token, profile };
@@ -44,24 +43,49 @@ const resolvers = {
       return { token, profile };
     },
 
-    // Add a third argument to the resolver to access data in our `context`
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { skills: skill },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError('You need to be logged in!');
+    createItinerary: async (parent, { location, startDate, endDate, airbnbAddress, airbnbCheckInDate, airbnbCheckOutDate, guests }) => {
+      const itinerary = await Itinerary.create({ location, startDate, endDate, airbnbAddress, airbnbCheckInDate, airbnbCheckOutDate, guests });
+      return itinerary;
     },
+
+    createRestaurant: async (parent, { name, cuisine, location, reservationDate, reservationTime, guests }) => {
+      const restaurant = await Restaurants.create({ name, cuisine, location, reservationDate, reservationTime, guests });
+      return restaurant;
+    },
+
+    createEx: async (parent, { name, location, date, time, guests }) => {
+      const ex = await Experiences.create({ name, location, date, time, guests });
+      return ex;
+    },
+
+    addRestaurantToItinerary: async (parent, {itineraryId, restaurantId} ) => {
+      const itinerary = await Itinerary.findOneAndUpdate(
+        { _id: itineraryId },
+        {
+          $addToSet: { restaurants: restaurantId },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      return itinerary;
+    },
+
+    addExToItinerary: async (parent, { itineraryId, exId }) => {
+      const itinerary = await Itinerary.findOneAndUpdate(
+        { _id: itineraryId },
+        {
+          $addToSet: { experiences: exId },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      return itinerary;
+    },
+    
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
@@ -69,16 +93,35 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { skills: skill } },
-          { new: true }
-        );
+    deleteItinerary: async (parent, { itineraryId }) => {
+      const existingItinerary = await Itinerary.findById(itineraryId);
+    
+      if (!existingItinerary) {
+        throw new Error("Itinerary not found");
       }
-      throw new AuthenticationError('You need to be logged in!');
+          await Itinerary.findByIdAndDelete(itineraryId);
+    
+      return "Itinerary deleted successfully";
+    },
+    deleteRestaurant: async (parent, { restaurantId }) => {
+      const existingRestaurant = await Restaurants.findById(restaurantId);
+    
+      if (!existingRestaurant) {
+        throw new Error("Restaurant not found");
+      }
+          await Restaurants.findByIdAndDelete(restaurantId);
+    
+      return "Restaurant deleted successfully";
+    },
+    deleteEx: async (parent, { exId }) => {
+      const existingExperience = await Experiences.findById(exId);
+    
+      if (!existingExperience) {
+        throw new Error("Experience not found");
+      }
+          await Experiences.findByIdAndDelete(exId);
+    
+      return "Experience deleted successfully";
     },
   },
 };
