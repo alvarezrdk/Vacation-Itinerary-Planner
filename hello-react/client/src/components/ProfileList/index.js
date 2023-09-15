@@ -23,9 +23,6 @@ const ProfileList = ({ profiles, title }) => {
     const response = await API.property()
     setListing(response)
     setHomes(response.data.homes);
-    console.log(homes)
-
-
   }
 
   const handleInputChange = (e) => setSearch(e.target.value);
@@ -33,7 +30,6 @@ const ProfileList = ({ profiles, title }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     searchProperty();
-    console.log(homes)
   };
 
   return (

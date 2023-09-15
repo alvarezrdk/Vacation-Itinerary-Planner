@@ -64,10 +64,10 @@ function App() {
                 path="/profiles/:profileId" 
                 element={<Profile />} 
               />
-               <Route 
+               {/* <Route 
                 path="/create" 
                 element={<Create />} 
-              />
+              /> */}
             </Routes>
           </div>
           <Footer />

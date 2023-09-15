@@ -73,7 +73,7 @@ export const ADD_EX_TO_ITINERARY = gql`
 `;
 
 export const REMOVE_PROFILE = gql`
-  mutation removeProfile(_id: ID!) {
+  mutation removeProfile($_id: ID!) {
     removeProfile(_id: $_id) {
       _id
     }

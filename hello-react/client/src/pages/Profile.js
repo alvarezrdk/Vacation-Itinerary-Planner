@@ -1,14 +1,14 @@
 import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { QUERY_SINGLE_PROFILE, QUERY_ME, GET_USER_ITINERARY } from '../utils/queries';
+import { QUERY_SINGLE_PROFILE, GET_USER_ITINERARY } from '../utils/queries';
 import Auth from '../utils/auth';
 
 const Profile = () => {
   const { profileId } = useParams();
 
   // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged-in user's information
-  const { loading, data } = useQuery(profileId ? QUERY_SINGLE_PROFILE : QUERY_ME, {
+  const { loading, data } = useQuery(profileId ? QUERY_SINGLE_PROFILE : {
     variables: { profileId: profileId },
   });
 
@@ -34,9 +34,9 @@ const Profile = () => {
   }
 
   // Fetch the user's itineraries
-  const { data: itineraryData } = useQuery(GET_USER_ITINERARY, {
-    variables: { userId: profile._id },
-  });
+  const { data: itineraryData } = '' //useQuery(GET_USER_ITINERARY, {
+  //   variables: { userId: profile._id },
+  //});
 
   const userItineraries = itineraryData?.userItineraries || [];
 
