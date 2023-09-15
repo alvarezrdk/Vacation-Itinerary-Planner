@@ -5,13 +5,13 @@ import axios from 'axios';
 
 // export default { search };
 
-const axios = require('axios');
+//const axios = require('axios');
 
-const options = {
+const apiFilter = {
   method: 'GET',
   url: 'https://airbnb-search.p.rapidapi.com/property/search',
   params: {
-    query: 'New York, NY'
+    query: 'Miami, FL'
   },
   headers: {
     'X-RapidAPI-Key': 'ef0bd9f482msh63afeccd9f08d96p14e2f6jsn88cf7f9d5d03',
@@ -19,9 +19,20 @@ const options = {
   }
 };
 
-try {
-	const response = await axios.request(options);
-	console.log(response.data);
-} catch (error) {
-	console.error(error);
+async function property() {
+  try {
+    const response = await axios.request(apiFilter);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+export default { property };
+
+
+
+
+
+
