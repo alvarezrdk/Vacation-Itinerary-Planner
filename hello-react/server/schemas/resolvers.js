@@ -10,6 +10,12 @@ const resolvers = {
     allProfiles: async () => {
       return Profile.find();
     },
+    allItineraries: async () => {
+      return Itinerary.find();
+    },
+    singleItinerary: async (parent, { itineraryId }) => {
+      return Itinerary.findOne({ _id: itineraryId });
+    },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
   },
 

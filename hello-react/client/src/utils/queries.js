@@ -19,6 +19,23 @@ export const QUERY_PROFILES = gql`
   }
   `;
 
+export const QUERY_ITINERARIES = gql`
+query allItineraries {
+  itineraries {
+    _id
+    location
+    startDate
+    endDate
+    guests
+    airbnbAddress
+    airbnbCheckInDate
+    airbnbCheckOutDate
+    restaurants
+    experiences
+  }
+}
+`;
+
 export const GET_ITINERARIES = gql`
   query getItineraries($userId: ID!) {
     itineraries(userId: $userId) {

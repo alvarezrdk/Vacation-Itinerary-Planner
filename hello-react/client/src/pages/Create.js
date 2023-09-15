@@ -1,24 +1,87 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
 
-import ProfileList from '../components/ProfileList';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 
-import { QUERY_PROFILES } from '../utils/queries';
+import { ADD_SKILL } from '../../utils/mutations';
 
-const Create = () => {
-  const { loading, data } = useQuery(QUERY_PROFILES);
-  const profiles = data?.profiles || [];
+import Auth from '../../utils/auth';
+
+const Create = ({ profileId }) => {
+  const [skill, setSkill] = useState('');
+
+  const [createItinerary, { error }] = useMutation(CREATE_ITINERARY);
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const data = await createItinerary({
+        variables: { profileId, skill },
+      });
+
+      setSkill('');
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
-    <main>
     <div>
-      <input> Location </input>
-      <input> Start Date </input>
-      <input> End Date </input>
-      <input> Guests </input>
+      <h4>Endorse some more skills below.</h4>
+
+      {Auth.loggedIn() ? (
+        <form
+          className="flex-row justify-center justify-space-between-md align-center"
+          onSubmit={handleFormSubmit}
+        >
+          <div className="col-12 col-lg-9">
+            <input
+              placeholder="Where you headed?"
+              value={skill}
+              className="form-input w-100"
+              onChange={(event) => setSkill(event.target.value)}
+            />
+             <input
+              placeholder="Where you headed?"
+              value={skill}
+              className="form-input w-100"
+              onChange={(event) => setSkill(event.target.value)}
+            />
+             <input
+              placeholder="Where you headed?"
+              value={skill}
+              className="form-input w-100"
+              onChange={(event) => setSkill(event.target.value)}
+            />
+             <input
+              placeholder="Where you headed?"
+              value={skill}
+              className="form-input w-100"
+              onChange={(event) => setSkill(event.target.value)}
+            />
+          </div>
+
+          <div className="col-12 col-lg-3">
+            <button className="btn btn-info btn-block py-3" type="submit">
+              Create your perfect trip itinerary
+            </button>
+          </div>
+          {error && (
+            <div className="col-12 my-3 bg-danger text-white p-3">
+              {error.message}
+            </div>
+          )}
+        </form>
+      ) : (
+        <p>
+          You need to be logged in to create an itinerary. Please{' '}
+          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
+        </p>
+      )}
     </div>
-    </main>
   );
 };
 
 export default Create;
+
