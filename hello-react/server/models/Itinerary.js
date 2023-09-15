@@ -17,22 +17,20 @@ const itinerarySchema = new Schema({
         trim: true,
     },
     guests: {
-        type: Int,
+        type: String,
+        required: true,
         trim: true,
     },
     airbnbAddress: {
         type: String,
-        required: true,
         trim: true,
     },
     airbnbCheckInDate: {
         type: String,
-        required: true,
         trim: true,
     },
     airbnbCheckOutDate: {
         type: String,
-        required: true,
         trim: true,
     },
     restaurants:[
