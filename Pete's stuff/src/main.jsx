@@ -6,6 +6,8 @@ import Home from './Home.jsx'
 import Footer from './Footer.jsx'
 import Profile from './Profile.jsx'
 import Trip from './Trip.jsx'
+import Signup from './SignUp.jsx'
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
@@ -27,6 +29,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         path="/profile/trip"
         element={<Trip/>}
         >
+        </Route>
+        <Route
+        path='/signup'
+        element={<Signup/>}
+        >
+
         </Route>
       </Routes>
       <Footer/>

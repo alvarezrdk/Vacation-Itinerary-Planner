@@ -17,8 +17,8 @@ function Header() {
   return (
     <>
       <NavBar>
-        <NavItem className='navItem' link='#' icon={bookIcon}></NavItem>
-        <p className='navSubTitle'>Guides</p>
+        {/* <NavItem className='navItem' link='#' icon={bookIcon}></NavItem>
+        <p className='navSubTitle'>Guides</p> */}
         <NavItem className='navItem isDropdown' className1='isDropdown' icon={worldIcon}>
 
             <DropdownMenu></DropdownMenu>
@@ -26,7 +26,7 @@ function Header() {
         </NavItem>
         <p className='navSubTitle'>Trips</p>
         <NavItem className='navItem' link="/profile" icon={profileIcon}></NavItem>
-        <a href="/profile" className='navSubTitle'>Log In</a>
+        <a href="/signup" className='navSubTitle'>Sign Up</a>
 
       </NavBar>
     </>
@@ -144,7 +144,7 @@ function NavBar(props) {
   return (
     <nav className='navBar'>
       <img className='whiteLogo' src={uvLogo}></img>
-      <h1 className='navTitle'>Lifetimes</h1>
+      <h1 className='navTitle'><a href='/'>Lifetimes</a></h1>
       <ul className='navBarNav'>{props.children}</ul>
     </nav>
   )
