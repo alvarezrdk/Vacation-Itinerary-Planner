@@ -137,3 +137,28 @@
     height: 10vh;
     padding: 4vw;
 }
+
+
+.menuMainOverviewItem {
+    width: 100%;
+    position: relative;
+}
+
+.menuMainOverviewIcon {
+    filter: invert(37%) sepia(29%) saturate(966%) hue-rotate(73deg) brightness(99%) contrast(89%);
+    height: 2vw;
+    padding: 0.5vw;
+    position: absolute;
+    left: -3vw;
+    top: 1.4vw;
+}
+
+
+.menuMainInfoItem {
+    padding: 4vw;
+    display: flex;
+}
+
+.extraMargin {
+    margin-bottom: 10vh;
+}

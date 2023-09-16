@@ -1,23 +1,27 @@
 [
   {
+    "username": "Brian123",
     "name": "Brian Kernighan",
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
     "skills": ["AWK", "AMPL", "Unix"]
   },
   {
+    "username": "Nick123",
     "name": "Nick Price",
     "email": "nprice0502@yahoo.com",
     "password": "password02",
     "skills": ["Javascript", "Ai", "NodeJS", "Python"]
   },
   {
+    "username": "Amiko123",
     "name": "Amiko",
     "email": "amiko@techfriends.dev",
     "password": "password03",
     "skills": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"]
   },
   {
+    "username": "Kent123",
     "name": "Kent Beck",
     "email": "kbeck@techfriends.dev",
     "password": "password04",
@@ -29,12 +33,14 @@
     ]
   },
   {
+    "username": "Edward123",
     "name": "Edward V. Berard",
     "email": "evberard@techfriends.dev",
     "password": "password05",
     "skills": ["Object-Oriented Design"]
   },
   {
+    "username": "Alan123",
     "name": "Alan Kay",
     "email": "akay@techfriends.dev",
     "password": "password06",
@@ -45,24 +51,28 @@
     ]
   },
   {
+    "username": "Hoare123",
     "name": "C.A.R. Hoare",
     "email": "choare@techfriends.dev",
     "password": "password07",
     "skills": ["Algorithms", "Quicksort", "Hoare Logic"]
   },
   {
+    "username": "David123",
     "name": "David Thomas",
     "email": "dthomas@techfriends.dev",
     "password": "password08",
     "skills": ["Author", "Code Kata", "Ruby", "Pragmatic Programming"]
   },
   {
+    "username": "Donald123",
     "name": "Donald Knuth",
     "email": "dknuth@techfriends.dev",
     "password": "password09",
     "skills": ["TeX Computer Typesetting", "Algorithms", "Author"]
   },
   {
+    "username": "Lernantino123",
     "name": "Lernantino",
     "email": "lernantino@techfriends.dev",
     "password": "password10",

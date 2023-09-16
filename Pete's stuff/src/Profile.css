@@ -2,6 +2,7 @@
     --bg: #e2f3e3;
     --bgAccent: #89cf8b;
     --bg2: #c4e7c5;
+    --bg3: #f3faf4;
     --textColor: #327b35;
     --textColorDark: #327b35;
     --navSize: 60px;
@@ -110,3 +111,33 @@
 /* .profileTripAbout {
 
 } */
+.createNewTripBlur {
+    /* display: none; */
+    position: fixed;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: var(--bg);
+    opacity: 80%;
+}
+
+.createNewTrip {
+    /* display: none; */
+    position: fixed;
+    z-index: 6;
+    background-color: var(--bg2);
+    opacity: 100%;
+    border: solid 5px var(--textColor);
+    border-radius: 30px;
+    width: 50vw;
+    height: 70vh;
+    left: 25vw;
+    top: 15vh;
+    box-shadow: 0 0 30px rgba(0,0,0,0.3);
+}
+
+.createNewTripInterior{
+    margin: 3vw;
+}
