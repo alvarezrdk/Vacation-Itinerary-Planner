@@ -17,8 +17,8 @@ function Header() {
   return (
     <>
       <NavBar>
-        {/* <NavItem className='navItem' link='#' icon={bookIcon}></NavItem>
-        <p className='navSubTitle'>Guides</p> */}
+        <NavItem className='navItem' link='#' icon={bookIcon}></NavItem>
+        <p className='navSubTitle'>Guides</p>
         <NavItem className='navItem isDropdown' className1='isDropdown' icon={worldIcon}>
 
             <DropdownMenu></DropdownMenu>
@@ -163,6 +163,8 @@ function NavItem(props) {
     } else if (Event.target.className === 'dropdown isDropdown'){
       return
     } else if (Event.target.className === 'navItem isDropdown'){
+      return
+    } else if (Event.target.className === 'iconButton isDropdown'){
       return
     } else {
       setOpen(false);

@@ -12,7 +12,8 @@ function Trip() {
 
     function MenuMainOverviewItem(props) {
 
-        const [active, setActive] = useState(true);
+        const [active, setActive] = useState(false);
+        const [open, setOpen] = useState(false);
 
         if (active) {
             return (
@@ -28,17 +29,17 @@ function Trip() {
             )
         } else
 
-        return (
-            <div className='menuMainOverviewItem'>
-            <a href='#' className='menuMainOverviewItemButton' onClick={() => { setOpen((prevState) => !prevState); setActive((prevState) => !prevState) }} >
-                <img src={caretRight} className='menuMainOverviewIcon'></img>
-            </a>
-            <a>
-                <h1>{props.title}</h1>
-            </a>
-            {open && props.children}
-        </div>
-        )
+            return (
+                <div className='menuMainOverviewItem'>
+                    <a href='#' className='menuMainOverviewItemButton' onClick={() => { setOpen((prevState) => !prevState); setActive((prevState) => !prevState) }} >
+                        <img src={caretRight} className='menuMainOverviewIcon'></img>
+                    </a>
+                    <a>
+                        <h1>{props.title}</h1>
+                    </a>
+                    {open && props.children}
+                </div>
+            )
     }
 
     function MenuSideBarItem(props) {
@@ -51,8 +52,6 @@ function Trip() {
                 <div className='menuSideBarItem'>
                     <a href='#' className='menuSideBarIconButton' onClick={() => { setOpen((prevState) => !prevState); setActive((prevState) => !prevState) }} >
                         <img src={caret} className='menuSideBarIcon'></img>
-                    </a>
-                    <a>
                         <h1>{props.title}</h1>
                     </a>
                     {open && props.children}
@@ -85,9 +84,6 @@ function Trip() {
                         <MenuSideBarItem
                             title="Overview"
                         >
-                            <a>
-                                <p>Notes</p>
-                            </a>
                             <a>
                                 <p>Restaurants</p>
                             </a>
@@ -122,13 +118,78 @@ function Trip() {
                         <div className='menuMainInfoItemShaded'>
                             <h1 className='menuMainInfoTitle'>Overview</h1>
                         </div>
-                        <div>
+                        <div className='menuMainInfoItem'>
                             <MenuMainOverviewItem
-                            
+                                title="Restaurants"
                             >
+                                <a>
+                                    <p>Restaurants</p>
+                                </a>
+                            </MenuMainOverviewItem>
+                        </div>
+                        <div className='menuMainInfoItem'>
+                            <MenuMainOverviewItem
+                                title="Activities"
+                            >
+                                <a>
+                                    <p>Restaurants</p>
+                                </a>
+                            </MenuMainOverviewItem>
+                        </div>
+                        <div className='menuMainInfoItem'>
+                            <MenuMainOverviewItem
+                                title="Accomodations"
+                            >
+                                <a>
+                                    <p>Restaurants</p>
+                                </a>
+                            </MenuMainOverviewItem>
+                        </div>
+                        <div className='menuMainInfoItemShaded'>
+                            <h1 className='menuMainInfoTitle'>Itinerary</h1>
+                        </div>
+                        <div className='menuMainInfoItem'>
+                            <MenuMainOverviewItem
+                                title="Day 1"
+                            >
+                                <p>9:15 Massage</p>
+                                <p>1:00 Lunch</p>
+                                <p>3:00 Homework</p>
+
 
                             </MenuMainOverviewItem>
                         </div>
+                        <div className='menuMainInfoItem'>
+                            <MenuMainOverviewItem
+                                title="Day 2"
+                            >
+                                <a>
+                                    <p>Restaurants</p>
+                                </a>
+                            </MenuMainOverviewItem>
+                        </div>
+                        <div className='menuMainInfoItem'>
+                            <MenuMainOverviewItem
+                                title="Day 3"
+                            >
+                                <a>
+                                    <p>Restaurants</p>
+                                </a>
+                            </MenuMainOverviewItem>
+                        </div>
+                        <div className='menuMainInfoItemShaded'>
+                            <h1 className='menuMainInfoTitle'>Budget</h1>
+                        </div>
+                        <div className='menuMainInfoItem'>
+                            <MenuMainOverviewItem
+                                title="Breakdown"
+                            >
+                                <a>
+                                    <p>Restaurants</p>
+                                </a>
+                            </MenuMainOverviewItem>
+                        </div>
+
                     </div>
                 </div>
                 <div className='overviewMap shadowElement'>

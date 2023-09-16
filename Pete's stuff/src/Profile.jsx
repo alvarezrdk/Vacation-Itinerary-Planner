@@ -8,6 +8,8 @@ import nyc from './assets/cityImages/NewYorkCity.jpg'
 import chicago from './assets/cityImages/Chicago.jpg'
 import atlanta from './assets/cityImages/Atlanta.jpg'
 
+// import Create from './create';
+
 function Trip(props) {
     return (
         <div class="tripsItem">
@@ -26,6 +28,16 @@ function Trip(props) {
 function Profile() {
     return (
         <>
+            <div className='createNewTripBlur'>
+            </div>
+            <div className='createNewTrip'>
+                <div className='createNewTripInterior'>
+                    <h1>New Trip</h1>
+                    {/* <Create></Create> */}
+                </div>
+            </div>
+
+
             <div className='profileMain'>
                 <div className='profileCategory'>
                     <div className='profileImageContainer'>
