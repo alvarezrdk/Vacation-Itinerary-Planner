@@ -12,20 +12,20 @@ import uvLogo from './assets/Icons/UV-Logo.png'
 import { CSSTransition } from 'react-transition-group'
 
 
-
 function Header() {
+
   return (
     <>
       <NavBar>
-        <NavItem link='#' icon={bookIcon}></NavItem>
+        <NavItem className='navItem' link='#' icon={bookIcon}></NavItem>
         <p className='navSubTitle'>Guides</p>
-        <NavItem icon={worldIcon}>
+        <NavItem className='navItem isDropdown' className1='isDropdown' icon={worldIcon}>
 
-          <DropdownMenu></DropdownMenu>
+            <DropdownMenu></DropdownMenu>
 
         </NavItem>
         <p className='navSubTitle'>Trips</p>
-        <NavItem link="/profile" icon={profileIcon}></NavItem>
+        <NavItem className='navItem' link="/profile" icon={profileIcon}></NavItem>
         <a href="/profile" className='navSubTitle'>Log In</a>
 
       </NavBar>
@@ -46,9 +46,9 @@ function DropdownMenu() {
   function DropdownItem(props) {
     if (props.title === "true") {
       return (
-        <a href="#" className='menuItem' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-          <span className='iconButton dropdownTitle'>
-            <img src={props.leftIcon}></img>
+        <a href="#" className='isDropdown menuItem' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+          <span className='iconButton dropdownTitle isDropdown'>
+            <img className='isDropdown' src={props.leftIcon}></img>
           </span>
 
           {props.children}
@@ -57,9 +57,9 @@ function DropdownMenu() {
     }
 
     return (
-      <a href="#" className='menuItem' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
-        <span className='iconButton'>
-          <img src={props.leftIcon}></img>
+      <a href="#" className='isDropdown menuItem' onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}>
+        <span className='iconButton isDropdown'>
+          <img className='isDropdown' src={props.leftIcon}></img>
         </span>
 
         {props.children}
@@ -73,7 +73,7 @@ function DropdownMenu() {
   }
 
   return (
-    <div className='dropdown' style={{ height: menuHeight }}>
+    <div className='dropdown isDropdown' style={{ height: menuHeight }}>
       <CSSTransition
         in={activeMenu === "main"}
         unmountOnExit
@@ -82,16 +82,16 @@ function DropdownMenu() {
         onEnter={calcHeight}
       >
 
-        <div className='menu'>
+        <div className='menu isDropdown'>
           <DropdownItem
             leftIcon={mapIcon}>
-            <p>Plan a Trip</p>
+            <p className='isDropdown'>Plan a Trip</p>
           </DropdownItem>
 
           <DropdownItem
             leftIcon={tripsIcon}
             goToMenu='settings'>
-            <p>Saved Trips</p>
+            <p className='isDropdown'>Saved Trips</p>
           </DropdownItem>
         </div>
 
@@ -105,32 +105,32 @@ function DropdownMenu() {
         onEnter={calcHeight}
       >
 
-        <div className='menu'>
+        <div className='menu isDropdown'>
           <DropdownItem
             leftIcon={chevronIcon}
             goToMenu='main'
             title="true">
-            <h1>Saved Trips</h1>
+            <h1 className='isDropdown'>Saved Trips</h1>
           </DropdownItem>
           <DropdownItem
             leftIcon={cityIcon}>
-            <p>New York City</p>
+            <p className='isDropdown'>New York City</p>
           </DropdownItem>
           <DropdownItem
             leftIcon={cityIcon}>
-            <p>Miami</p>
+            <p className='isDropdown'>Miami</p>
           </DropdownItem>
           <DropdownItem
             leftIcon={cityIcon}>
-            <p>San Francisco</p>
+            <p className='isDropdown'>San Francisco</p>
           </DropdownItem>
           <DropdownItem
             leftIcon={cityIcon}>
-            <p>Chicago</p>
+            <p className='isDropdown'>Chicago</p>
           </DropdownItem>
           <DropdownItem
             leftIcon={cityIcon}>
-            <p>Atlanta</p>
+            <p className='isDropdown'>Atlanta</p>
           </DropdownItem>
         </div>
 
@@ -154,10 +154,25 @@ function NavItem(props) {
 
   const [open, setOpen] = useState(false);
 
+  addEventListener("mousedown", (Event)=>{
+    // console.log(Event.target)
+    if (Event.target.className === 'isDropdown') {
+      return
+    } else if (Event.target.className === 'isDropdown menuItem'){
+      return
+    } else if (Event.target.className === 'dropdown isDropdown'){
+      return
+    } else if (Event.target.className === 'navItem isDropdown'){
+      return
+    } else {
+      setOpen(false);
+    }
+  });
+
   return (
-    <li className='navItem'>
+    <li className={props.className}>
       <a href={props.link} className='iconButton' onClick={() => setOpen((prevState) => !prevState)}>
-        <img src={props.icon}></img>
+        <img className={props.className1} src={props.icon}></img>
       </a>
 
       {open && props.children}
