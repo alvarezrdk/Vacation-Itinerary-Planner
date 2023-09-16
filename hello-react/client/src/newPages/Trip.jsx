@@ -62,10 +62,7 @@ function Trip() {
             return (
                 <div className='menuSideBarItem'>
                     <a href='#' className='menuSideBarIconButton' onClick={() => { setOpen((prevState) => !prevState); setActive((prevState) => !prevState) }} >
-
                         <img src={caretRight} className='menuSideBarIcon'></img>
-                    </a>
-                    <a>
                         <h1>{props.title}</h1>
                     </a>
                     {open && props.children}

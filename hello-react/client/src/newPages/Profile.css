@@ -130,9 +130,9 @@
     background-color: var(--bg2);
     opacity: 100%;
     border: solid 5px var(--textColor);
-    border-radius: 30px;
+    border-radius: 20px;
     width: 50vw;
-    height: 70vh;
+    height: min-content;
     left: 25vw;
     top: 15vh;
     box-shadow: 0 0 30px rgba(0,0,0,0.3);
@@ -140,4 +140,45 @@
 
 .createNewTripInterior{
     margin: 3vw;
+}
+
+.closeButton {
+    position: absolute;
+    width: 3vw;
+    height: 3vw;
+    top: 1vw;
+    right: 1vw;
+}
+
+.closeButtonImage {
+    width: 3vw;
+    filter: invert(37%) sepia(29%) saturate(966%) hue-rotate(73deg) brightness(99%) contrast(89%);
+}
+
+.modalFormContainer {
+    display: flex;
+    padding: 3vw;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modalFormInputContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+}
+
+.modalFormInput {
+    padding: 1vw;
+    margin: 1vw;
+    border: solid 1px var(--textColorDark);
+    border-radius: 10px;
+    flex: 1;
+}
+
+.modalFormInputButton {
+    margin: 0;
+    margin-top: 2vw;
 }

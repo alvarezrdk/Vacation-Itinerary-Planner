@@ -56,10 +56,8 @@
 .menuSideBarIcon {
     filter: invert(37%) sepia(29%) saturate(966%) hue-rotate(73deg) brightness(99%) contrast(89%);
     height: 1vw;
-    padding: 0.5vw;
     position: absolute;
-    left: -2vw;
-    top: 0.35vw;
+    left: -1.5vw;
 }
 
 .buttonAI {
@@ -75,11 +73,13 @@
 }
 
 .menuSideBarItem h1 {
-    font-size: 1vw;
+    font-size: 1.2vw;
 }
 
 .menuSideBarItem p {
     font-size: 1vw;
+    padding-top: .5vw;
+    padding-bottom: .5vw;
 }
 
 .menuSideBarIconButton {
@@ -134,7 +134,6 @@
 
 .menuMainInfoItemShaded {
     background-color: var(--bg2);
-    height: 10vh;
     padding: 4vw;
 }
 
@@ -150,7 +149,6 @@
     padding: 0.5vw;
     position: absolute;
     left: -3vw;
-    top: 1.4vw;
 }
 
 
