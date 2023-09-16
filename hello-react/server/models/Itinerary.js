@@ -21,7 +21,7 @@ const itinerarySchema = new Schema({
         required: true,
         trim: true,
     },
-    airbnbAddress: {
+    airbnbName: {
         type: String,
         trim: true,
     },

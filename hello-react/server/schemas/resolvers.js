@@ -4,11 +4,11 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    allProfiles: async () => {
-      return Profile.find();
-    },
     singleProfile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
+    },
+    allProfiles: async () => {
+      return Profile.find();
     },
     allItineraries: async () => {
       return Itinerary.find();
@@ -43,8 +43,8 @@ const resolvers = {
       return { token, profile };
     },
 
-    createItinerary: async (parent, { location, startDate, endDate, airbnbAddress, airbnbCheckInDate, airbnbCheckOutDate, guests }) => {
-      const itinerary = await Itinerary.create({ location, startDate, endDate, airbnbAddress, airbnbCheckInDate, airbnbCheckOutDate, guests });
+    createItinerary: async (parent, { location, startDate, endDate, guests }) => {
+      const itinerary = await Itinerary.create({ location, startDate, endDate, guests });
       return itinerary;
     },
 
@@ -63,6 +63,20 @@ const resolvers = {
         { _id: itineraryId },
         {
           $addToSet: { restaurants: restaurantId },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      return itinerary;
+    },
+
+    addAirbnbToItinerary: async (parent, {itineraryId, airbnbName} ) => {
+      const itinerary = await Itinerary.findOneAndUpdate(
+        { _id: itineraryId },
+        {
+          $addToSet: { airbnbName: airbnbName },
         },
         {
           new: true,
