@@ -1,0 +1,52 @@
+:root {
+    --bg: #e2f3e3;
+    --bgAccent: #89cf8b;
+    --bg2: #c4e7c5;
+    --bg3: #f3faf4;
+    --textColor: #327b35;
+    --textColorDark: #327b35;
+    --navSize: 60px;
+    --border: 5px solid #327b35;
+    --speed: 300ms;
+}
+
+.signupLoginMain {
+    display: flex;
+    padding: 5vw;
+    background-color: var(--bg3);
+}
+
+.signupLoginSub {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+    margin: 5vw;
+    border-radius: 20px;
+    padding: 5vw;
+}
+
+.signupLoginTitle {
+    margin: 1vw;
+}
+
+.formSub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formSubInput {
+    border: solid 1px var(--bgAccent);
+    border-radius: 10px;
+    padding: 0.5vw;
+    margin-bottom: 1vw;
+}
+
+.formSubButton {
+    margin: 1vw;
+    width: 50%;
+}

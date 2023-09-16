@@ -37,25 +37,25 @@ const Create = ({ profileId }) => {
         >
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Where you headed?"
+              placeholder="Where to?"
               value={skill}
               className="form-input w-100"
               onChange={(event) => setSkill(event.target.value)}
             />
              <input
-              placeholder="Where you headed?"
+              placeholder="Start Date"
               value={skill}
               className="form-input w-100"
               onChange={(event) => setSkill(event.target.value)}
             />
              <input
-              placeholder="Where you headed?"
+              placeholder="End Date"
               value={skill}
               className="form-input w-100"
               onChange={(event) => setSkill(event.target.value)}
             />
              <input
-              placeholder="Where you headed?"
+              placeholder="Number of People"
               value={skill}
               className="form-input w-100"
               onChange={(event) => setSkill(event.target.value)}
