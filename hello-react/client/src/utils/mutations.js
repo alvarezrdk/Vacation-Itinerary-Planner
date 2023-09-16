@@ -49,8 +49,8 @@ export const CREATE_RESTAURANT = gql`
 `;
 
 export const CREATE_EX = gql`
-  mutation createRestaurant($name: String!, $cuisine: String!, $location: String!, $reservationDate: String!, $reservationTime: String!, $guests: String!) {
-    createRestaurant(name: $name, location: $location, reservationDate: $date, time: $time, guests: $guests) {
+  mutation createEx($name: String!, $cuisine: String!, $location: String!, $date: String!, $time: String!, $guests: String!) {
+    createEx(name: $name, location: $location, date: $date, time: $time, guests: $guests) {
       _id
     }
   }
@@ -73,8 +73,8 @@ export const ADD_EX_TO_ITINERARY = gql`
 `;
 
 export const ADD_AIRBNB_TO_ITINERARY = gql`
-  mutation addAirbnbToItinerary($itineraryId: ID!, $airbnbName: String!) {
-    addAirbnbToItinerary(itineraryId: $itineraryId, airbnbName: $airbnbName) {
+  mutation addAirbnbToItinerary($itineraryId: ID!, $airbnbName: String!, $airbnbCheckInDate: String!, $airbnbCheckOutDate: String!) {
+    addAirbnbToItinerary(itineraryId: $itineraryId, airbnbName: $airbnbName, airbnbCheckInDate: $airbnbCheckInDate, airbnbCheckOutDate: $airbnbCheckOutDate) {
       _id
     }
   }
