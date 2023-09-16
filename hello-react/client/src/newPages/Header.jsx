@@ -154,7 +154,7 @@ function NavItem(props) {
 
   const [open, setOpen] = useState(false);
 
-  addEventListener("mousedown", (Event)=>{
+  window.addEventListener("mousedown", (Event)=>{
     // console.log(Event.target)
     if (Event.target.className === 'isDropdown') {
       return
