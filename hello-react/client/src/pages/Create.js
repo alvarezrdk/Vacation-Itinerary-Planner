@@ -1,14 +1,14 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_SKILL } from '../../utils/mutations';
-
 import Auth from '../../utils/auth';
 
 const Create = ({ profileId }) => {
-  const [skill, setSkill] = useState('');
+  const [location, setLocation] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [guests, setGuests] = useState('');
 
   const [createItinerary, { error }] = useMutation(CREATE_ITINERARY);
 
@@ -17,10 +17,14 @@ const Create = ({ profileId }) => {
 
     try {
       const data = await createItinerary({
-        variables: { profileId, skill },
+        variables: { profileId, location, startDate, endDate, guests },
       });
+      console.log(data)
 
-      setSkill('');
+      setLocation('');
+      setStartDate('');
+      setEndDate('');
+      setGuests('');
     } catch (err) {
       console.error(err);
     }
@@ -37,28 +41,28 @@ const Create = ({ profileId }) => {
         >
           <div className="col-12 col-lg-9">
             <input
-              placeholder="Where to?"
-              value={skill}
+              placeholder="Where you headed?"
+              value={location}
               className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
+              onChange={(event) => setLocation(event.target.value)}
             />
              <input
-              placeholder="Start Date"
-              value={skill}
+              placeholder="When does it start?"
+              value={startDate}
               className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
+              onChange={(event) => setStartDate(event.target.value)}
             />
              <input
-              placeholder="End Date"
-              value={skill}
+              placeholder="When does it end?"
+              value={endDate}
               className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
+              onChange={(event) => setEndDate(event.target.value)}
             />
              <input
-              placeholder="Number of People"
-              value={skill}
+              placeholder="Just you, or do you not have any friends?"
+              value={guests}
               className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
+              onChange={(event) => setGuests(event.target.value)}
             />
           </div>
 
@@ -84,4 +88,3 @@ const Create = ({ profileId }) => {
 };
 
 export default Create;
-
