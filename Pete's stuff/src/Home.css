@@ -1,0 +1,272 @@
+:root {
+    --bg: #e2f3e3;
+    --bgAccent: #89cf8b;
+    --bg2: #c4e7c5;
+    --textColor: #327b35;
+    --textColorDark: #327b35;
+    --navSize: 60px;
+    --border: 5px solid #327b35;
+    --speed: 300ms;
+  }
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--textColor);
+}
+
+.featureMain {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 700px;
+    background-image: url(./assets/cityImages/SanFran.jpg);
+}
+
+.featureGradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(226, 243, 227, 1)), linear-gradient(to top, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgba(226, 243, 227, 1)), linear-gradient(to bottom, rgba(255, 255, 255, 0),rgba(255, 255, 255, 0), rgba(226, 243, 227, 1));
+}
+
+.featureImage {
+    width: 100%;
+    object-fit: cover;
+}
+
+.featureText {
+    width: 30%;
+    margin-top: 5vw;
+    margin-left: 5vw;
+    padding: 5vw;
+}
+
+.featureText h1 {
+    color: var(--textColorDark);
+    padding: 2vw 0;
+}
+
+button {
+    background-color: var(--textColorDark);
+    color: var(--bg);
+    border: none;
+    padding: 1vw;
+    border-radius: 20px;
+    margin: 5vw 1vw;
+}
+
+button:hover {
+    filter: brightness(1.2);
+  }
+
+.buttonLight {
+    background-color: var(--bgAccent);
+    color: var(--textColorDark);
+}
+
+.colorBlock {
+    height: 50px;
+    background-color: var(--bg);
+}
+
+/* This is for the Suggestions Section */
+
+.suggestedTripsSection {
+    background-color: var(--bg2);
+    height: min-content;
+    min-height: 300px;
+    padding: 3vw 5vw;
+    position: relative;
+}
+
+.planeTravel {
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    filter: invert(37%) sepia(29%) saturate(966%) hue-rotate(73deg) brightness(99%) contrast(89%);
+}
+
+.suggestedTripsSection h1 {
+    font-family: "Arsenal", sans-serif;
+    margin-top: 0;
+    margin-bottom: 3vw;
+    font-size: 3vw;
+}
+
+.suggestedTrips {
+    display: flex;
+}
+
+.suggestedTrip {
+    flex: 1;
+}
+
+.suggestedTripCard {
+    padding: 2vw;
+    position: relative;
+}
+
+.suggestedTripCard img {
+    width: 100%;
+    height: 200px;
+    border: var(--border);
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.suggestedTripCard h2 {
+    position: absolute;
+    font-weight: 300;
+    bottom: 1vw;
+    left: 2vw;
+    color: var(--bg);
+    background-color: var(--textColorDark);
+    padding: 0.5vw;
+    border-radius: 0 20px 0 20px;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    transform: scale(1.1);
+}
+
+/* Quote Section */
+
+.quote {
+    background-color: var(--textColorDark);
+    padding: 5vw;
+    text-align: center;
+}
+
+.quote h1 {
+    font-family: 'Arsenal', sans-serif;
+    font-size: 3vw;
+    color: var(--bg2);
+}
+
+.quote h2 {
+    color: var(--bg);
+    font-size: 1vw;
+    padding-top: 1em;
+    font-weight: 300;
+}
+
+/* Carousel */
+
+.carousel {
+    overflow: hidden;
+    width: 100%;
+    padding-right: 1vw;
+    margin-left: -1vw;
+  }
+  
+  .inner {
+    white-space: nowrap;
+    transition: transform 0.3s;
+    margin-left: 0;
+  }
+  
+  .carousel-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: min-content;
+    margin: 10%;
+    margin-left: 0;
+  }
+
+/* media */
+
+@media (max-width:600px) {
+
+    .featureMain {
+        height: 50vh;
+        background-color: var(--bg);
+    }
+
+    .featureText {
+        width: 80%;
+        padding: 5vw;
+        margin: 5vw;
+        font-size: 3vw;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .featureText button {
+        width: 30vw;
+        margin: 2vw;
+        padding: 2vw;
+        font-size: 3vw;
+    }
+
+    .featureImage {
+        display: none;
+    }
+    
+    .featureText h1 {
+        color: var(--textColorDark);
+        padding: 2vw 0;
+    }
+
+    .suggestedTrips {
+        flex-direction: column;
+    }
+
+    .suggestedTripsSection {
+        height: min-content;
+    }
+
+    .suggestedTrip h2 {
+        bottom: 2vw;
+        left: 2vw;
+        padding: 2vw;
+        font-size: 3vw;
+    }
+
+    .quote h1 {
+        font-family: 'Arsenal', sans-serif;
+        font-size: 6vw;
+        color: var(--bg2);
+    }
+    
+    .quote h2 {
+        color: var(--bg);
+        font-size: 3vw;
+        padding-top: 1em;
+        font-weight: 300;
+    }
+
+    .zoom {
+        transition: none;
+    }
+    
+    .zoom:hover {
+        transform: none;
+    }
+
+    .suggestedTripCard img {
+        width: 100%;
+        height: 60vw;
+        border: var(--border);
+        border-radius: 20px;
+        object-fit: cover;
+    }
+
+    .planeTravel {
+        display: none;
+    }
+
+    .suggestedTripsSection h1 {
+        text-align: center;
+        margin-top: 5vw;
+        margin-bottom: -3vw;
+        font-size: 5vw;
+    }
+}

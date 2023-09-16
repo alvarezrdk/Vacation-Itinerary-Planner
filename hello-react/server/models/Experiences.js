@@ -23,7 +23,7 @@ const experiencesSchema = new Schema({
         trim: true,
     },
     guests: {
-        type: Int,
+        type: Number,
         trim: true,
     }
 });
