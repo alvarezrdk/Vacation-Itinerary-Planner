@@ -9,7 +9,7 @@ import chicago from './assets/cityImages/Chicago.jpg'
 import atlanta from './assets/cityImages/Atlanta.jpg'
 import x from './assets/Icons/X.svg'
 
-// import Create from './create';
+import Create from '../pages/Create';
 
 function Trip(props) {
     return (
@@ -43,6 +43,7 @@ function Profile() {
                         <a className='closeButton' onClick={() => { setModalIsOpen((prevState) => !prevState)}}>
                             <img src={x} className='closeButtonImage'></img>
                         </a>
+                        <Create></Create>
                     </div>
                 </div>
             </div>

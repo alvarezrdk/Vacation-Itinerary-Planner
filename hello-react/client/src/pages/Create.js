@@ -1,14 +1,16 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_SKILL } from '../../utils/mutations';
+import Auth from '../utils/auth';
 
-import Auth from '../../utils/auth';
+import { CREATE_ITINERARY } from '../utils/mutations';
 
 const Create = ({ profileId }) => {
-  const [skill, setSkill] = useState('');
+  const [location, setLocation] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [guests, setGuests] = useState('');
 
   const [createItinerary, { error }] = useMutation(CREATE_ITINERARY);
 
@@ -17,10 +19,14 @@ const Create = ({ profileId }) => {
 
     try {
       const data = await createItinerary({
-        variables: { profileId, skill },
+        variables: { profileId, location, startDate, endDate, guests },
       });
+      console.log(data)
 
-      setSkill('');
+      setLocation('');
+      setStartDate('');
+      setEndDate('');
+      setGuests('');
     } catch (err) {
       console.error(err);
     }
@@ -28,60 +34,68 @@ const Create = ({ profileId }) => {
 
   return (
     <div>
-      <h4>Endorse some more skills below.</h4>
 
-      {Auth.loggedIn() ? (
-        <form
-          className="flex-row justify-center justify-space-between-md align-center"
-          onSubmit={handleFormSubmit}
-        >
-          <div className="col-12 col-lg-9">
+      {/* {Auth.loggedIn() ? ( */}
+      <form
+        className="modalForm"
+        onSubmit={handleFormSubmit}
+      >
+        <div className="modalFormContainer">
+          <div className='modalFormInputContainer'>
+            <label>Where To?</label>
             <input
-              placeholder="Where to?"
-              value={skill}
-              className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
-            />
-             <input
-              placeholder="Start Date"
-              value={skill}
-              className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
-            />
-             <input
-              placeholder="End Date"
-              value={skill}
-              className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
-            />
-             <input
-              placeholder="Number of People"
-              value={skill}
-              className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
+              value={location}
+              className="modalFormInput"
+              onChange={(event) => setLocation(event.target.value)}
             />
           </div>
-
-          <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
+          <div className='modalFormInputContainer'>
+            <label>How Many Guests</label>
+            <input
+              type='number'
+              value={guests}
+              className="modalFormInput"
+              onChange={(event) => setGuests(event.target.value)}
+            />
+          </div>
+          <div className='modalFormInputContainer'>
+            <label>Departure Date</label>
+            <input
+              type='date'
+              value={startDate}
+              className="modalFormInput"
+              onChange={(event) => setStartDate(event.target.value)}
+            />
+          </div>
+          <div className='modalFormInputContainer'>
+            <label>Return Date</label>
+            <input
+              type='date'
+              value={endDate}
+              className="modalFormInput"
+              onChange={(event) => setEndDate(event.target.value)}
+            />
+          </div>
+          <div className="">
+            <button className="modalFormInputButton" type="submit">
               Create your perfect trip itinerary
             </button>
           </div>
-          {error && (
-            <div className="col-12 my-3 bg-danger text-white p-3">
-              {error.message}
-            </div>
-          )}
-        </form>
-      ) : (
+        </div>
+        {error && (
+          <div className="">
+            {error.message}
+          </div>
+        )}
+      </form>
+      {/* ) : (
         <p>
           You need to be logged in to create an itinerary. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
-      )}
+      )} */}
     </div>
   );
 };
 
 export default Create;
-
