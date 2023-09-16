@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
+
 import Auth from '../utils/auth';
 
 import { CREATE_ITINERARY } from '../utils/mutations';
+
+
 
 const Create = ({ profileId }) => {
   const [location, setLocation] = useState('');
@@ -44,6 +47,7 @@ const Create = ({ profileId }) => {
           <div className='modalFormInputContainer'>
             <label>Where To?</label>
             <input
+
               value={location}
               className="modalFormInput"
               onChange={(event) => setLocation(event.target.value)}
@@ -74,6 +78,7 @@ const Create = ({ profileId }) => {
               value={endDate}
               className="modalFormInput"
               onChange={(event) => setEndDate(event.target.value)}
+
             />
           </div>
           <div className="">

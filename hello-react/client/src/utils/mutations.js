@@ -23,8 +23,8 @@ export const LOGIN_USER = gql`
 `;
 
 export const CREATE_ITINERARY = gql`
-  mutation createItinerary($location: String!, $startDate: String!, $endDate: String!, $airbnbAddress: String!, $airbnbCheckInDate: String!, $airbnbCheckOutDate: String!, $guests: String!) {
-    createItinerary(location: $location, startDate: $startDate, endDate: $endDate, airbnbAddress: $airbnbAddress, airbnbCheckInDate: $airbnbCheckInDate, airbnbCheckOutDate: $airbnbCheckOutDate, guests: $guests ) {
+  mutation createItinerary($location: String!, $startDate: String!, $endDate: String!, $guests: String!) {
+    createItinerary(location: $location, startDate: $startDate, endDate: $endDate, guests: $guests ) {
       _id
     }
   }
@@ -72,8 +72,16 @@ export const ADD_EX_TO_ITINERARY = gql`
   }
 `;
 
+export const ADD_AIRBNB_TO_ITINERARY = gql`
+  mutation addAirbnbToItinerary($itineraryId: ID!, $airbnbName: String!) {
+    addAirbnbToItinerary(itineraryId: $itineraryId, airbnbName: $airbnbName) {
+      _id
+    }
+  }
+`;
+
 export const REMOVE_PROFILE = gql`
-  mutation removeProfile($_id: ID!) {
+  mutation removeProfile(_id: ID!) {
     removeProfile(_id: $_id) {
       _id
     }
