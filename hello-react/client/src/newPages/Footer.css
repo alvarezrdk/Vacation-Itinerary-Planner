@@ -1,0 +1,153 @@
+:root {
+    --bg: #e2f3e3;
+    --bgAccent: #89cf8b;
+    --bg2: #c4e7c5;
+    --textColor: #327b35;
+    --textColorDark: #327b35;
+    --navSize: 60px;
+    --border: 5px solid #327b35;
+    --speed: 300ms;
+  }
+
+* {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--textColor);
+}
+
+footer {
+    background-color: var(--bg);
+    padding: 5em;
+    display: flex;
+    color: whitesmoke;
+}
+
+.footerCard {
+    flex: 1;
+}
+
+.contact p {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    text-align: center;
+    font-weight: 300;
+}
+
+.notification {
+    text-align: center;
+}
+
+.notification h1 {
+    font-family: 'Arsenal', sans-serif;
+    font-weight: 400;
+    font-size: 2.5vw;
+}
+
+.eventNotificationSignUp {
+    padding: 1em;
+    width: 100%;
+    display: flex;
+}
+
+.eventNotificationSignUp input {
+    flex: 2;
+    padding: 1em;
+    border: none;
+    margin: 0.5em;
+}
+
+.eventNotificationSignUp button {
+    flex: 1;
+    padding: 1em;
+    border: none;
+    margin: 0.5em;
+    background-color: var(--textColorDark);
+    white-space: nowrap;
+}
+
+.socials {
+    position: relative;
+}
+
+.socialsLogos {
+    width: 30%;
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    filter: invert(37%) sepia(29%) saturate(966%) hue-rotate(73deg) brightness(99%) contrast(89%);
+}
+
+.socials h3 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.socialsLogo {
+    height: 30px;
+    width: 30px;
+    flex: 1;
+    object-fit: contain;
+}
+
+@media (max-width:600px) {
+
+    .contact p {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        text-align: center;
+        font-weight: 300;
+        font-size: 3vw;
+    }
+
+    .contact {
+        margin-bottom: 10vw;
+    }
+
+    footer{
+        flex-direction: column;
+    }
+    
+    .footerCard {
+        width: 100%;
+    }
+
+    .eventNotificationSignUp {
+        padding: 1em;
+        width: 100%;
+        display: flex;
+        margin: auto;
+    }
+    
+    .eventNotificationSignUp input {
+        flex: 2;
+        padding: 2vw;
+        border: none;
+        margin: 1vw;
+        font-size: 3vw;
+    }
+    
+    .eventNotificationSignUp button {
+        flex: 1;
+        padding: 2vw;
+        border: none;
+        margin: 1vw;
+        font-size: 3vw;
+        background-color: var(--textColorDark);
+        white-space: nowrap;
+    }
+
+    .socials {
+        margin-top: 10vw;
+    }
+
+    .socials h3 {
+        text-align: center;
+        text-decoration: underline;
+        font-size: 3vw;
+    }
+
+    .socialsLogos {
+        margin-top: 3vw;
+        width: 70%;
+    }
+  }
