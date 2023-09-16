@@ -20,6 +20,9 @@
     "react-transition-group": "^4.4.5",
     "web-vitals": "^0.2.4"
   },
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
