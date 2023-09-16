@@ -130,7 +130,7 @@
     background-color: var(--bg2);
     opacity: 100%;
     border: solid 5px var(--textColor);
-    border-radius: 30px;
+    border-radius: 20px;
     width: 50vw;
     height: 70vh;
     left: 25vw;
@@ -140,4 +140,17 @@
 
 .createNewTripInterior{
     margin: 3vw;
+}
+
+.closeButton {
+    position: absolute;
+    width: 3vw;
+    height: 3vw;
+    top: 1vw;
+    right: 1vw;
+}
+
+.closeButtonImage {
+    width: 3vw;
+    filter: invert(37%) sepia(29%) saturate(966%) hue-rotate(73deg) brightness(99%) contrast(89%);
 }
