@@ -4,11 +4,11 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    singleProfile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
-    },
     allProfiles: async () => {
       return Profile.find();
+    },
+    singleProfile: async (parent, { profileId }) => {
+      return Profile.findOne({ _id: profileId });
     },
     allItineraries: async () => {
       return Itinerary.find();
