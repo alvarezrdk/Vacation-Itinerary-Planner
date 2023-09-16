@@ -39,7 +39,7 @@ query allItineraries {
 export const GET_ITINERARIES = gql`
   query getItineraries($userId: ID!) {
     itineraries(userId: $userId) {
-      id
+      _id
       title
       description
     }
@@ -60,8 +60,6 @@ export const GET_USER_ITINERARY =gql`
 query getUserItineraries($userId: ID!) {
   userItineraries(userId: $userId) {
     id
-    title
-    description
   }
 }
 `
