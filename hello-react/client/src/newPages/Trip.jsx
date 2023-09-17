@@ -96,7 +96,7 @@ const Trip = () => {
                                         list={homes}
                                     />
                                 ) : (
-                                    <h3>No Results to Display</h3>
+                                    <h3>Pending Results</h3>
                                 )}
                             </div>
                         </div>
