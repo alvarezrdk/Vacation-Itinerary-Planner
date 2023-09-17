@@ -1,14 +1,14 @@
 import React from 'react';
 
 function PropertyDetail(props) {
-  console.log(props);
-  const result = props.list;
+  let result = props.list;
 
   if (!props.list?.length) {
     return null;
-  } else {
-    console.log(result)
-  }
+
+  } else { result = props.list.slice(1);
+  console.log(result); }
+
 
   return (
     <div className="text-center">
