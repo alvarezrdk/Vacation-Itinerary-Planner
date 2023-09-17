@@ -11,7 +11,7 @@ const typeDefs = gql`
   type Itinerary {
     _id: ID
     location: String!
-    guests: String
+    guests: Int
     startDate: String!
     endDate: String!
     airbnbName: String!
@@ -28,7 +28,7 @@ const typeDefs = gql`
     location: String!
     reservationDate: String!
     reservationTime: String!
-    guests: String
+    guests: Int
   }
 
   type Experiences {
@@ -37,7 +37,7 @@ const typeDefs = gql`
     location: String!
     date: String!
     time: String!
-    guests: String
+    guests: Int
   }
 
 
@@ -61,8 +61,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     removeProfile: Profile
     createItinerary(location: String!, startDate: String!, endDate: String!, guests: Int): Itinerary
-    createRestaurant(name: String!, cuisine: String!, location: String!, reservationDate: String!, reservationTime: String!, guests: String!): Restaurants
-    createEx(name: String!, location: String!, date: String!, time: String!, guests: String!): Experiences
+    createRestaurant(name: String!, cuisine: String!, location: String!, reservationDate: String!, reservationTime: String!, guests: Int): Restaurants
+    createEx(name: String!, location: String!, date: String!, time: String!, guests: Int): Experiences
     addRestaurantToItinerary(
       itineraryId: ID!
       restaurantId: ID!

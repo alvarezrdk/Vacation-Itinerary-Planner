@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import './Trip.css'
-
 import caret from './assets/Icons/caret.svg'
 import caretRight from './assets/Icons/caretRight.svg'
 import miami from './assets/cityImages/Miami.jpg'
+import { useParams } from "react-router-dom"
+import x from './assets/Icons/X.svg'
 
-// Ruben Additions Start
+
+// function Trip() { 
+//     let { id } = useParams();
+// }
+
 import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
 import SearchForm from '../components/Search/SearchForm';
@@ -17,7 +22,6 @@ import { GET_BNB_RESERVATION } from '../utils/queries';
 
 
 
-//function Trip() { Ruben commented
 const Trip = () => {
 
     // Ruben Additions Start
@@ -41,6 +45,10 @@ const Trip = () => {
         setHomes(response.data.homes);
     }
 
+        const handleInputChange_city = (e) => setCity(e.target.value);
+        const handleInputChange_startDate = (e) => setstartDate(e.target.value);
+        const handleInputChange_endDate = (e) => setendDate(e.target.value);
+        const handleInputChange_people = (e) => setpeople(e.target.value);
     const [state, dispatch] = useState();
     const stripePromise = loadStripe('pk_test_51Nr12cG3HMx6NAFGYTqkC7ydc1MpCyK3OHCJZdsxYWQks9aYqneBjhpNKxxifgY2ZbJIdcNHDgfTG0uMisXWM4zS008wp3C3xw');
     const [getCheckout, { data }] = useLazyQuery(GET_BNB_RESERVATION);
@@ -59,15 +67,15 @@ const Trip = () => {
     const handleInputChange_people = (e) => setpeople(e.target.value);
 
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
-        query.city = { city }
-        query.startDate = {startDate}
-        query.endDate = {endDate}
-        query.people = {people}
-        console.log(query)
-        searchProperty(query);
-    };
+        const handleFormSubmit = (e) => {
+            e.preventDefault()
+            query.city = { city }
+            query.startDate = { startDate }
+            query.endDate = { endDate }
+            query.people = { people }
+            console.log(query)
+            searchProperty(query);
+        };
 
     const handleFormBook = () => {
         getCheckout({
@@ -83,7 +91,7 @@ const Trip = () => {
 
         const [active, setActive] = useState(false);
         const [open, setOpen] = useState(false);
-        
+
 
         if (active) {
             return (
@@ -137,12 +145,13 @@ const Trip = () => {
                     </a>
                     {open && props.children}
                 </div>
-                )   
-            }
+            )
+        }
 
     }
     return (
         <>
+            <CreateTrip></CreateTrip>
             <div className='tripMain'>
                 <div className='menuMain'>
                     <div className='menuSideBar'>
@@ -179,21 +188,10 @@ const Trip = () => {
                         <div className='menuMainInfoImageContainer'>
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
-                                {/* Ruben Additions Start*/}                                 
-                                <h1>Trip To </h1> 
-                                <SearchForm
-                                city = {city}
-                                handleInputChange_city={handleInputChange_city}
-                                startDate = {startDate}
-                                handleInputChange_startDate={handleInputChange_startDate}
-                                endDate = {endDate}
-                                handleInputChange_endDate={handleInputChange_endDate}
-                                people = {people}
-                                handleInputChange_people = {handleInputChange_people}
-                                handleFormSubmit={handleFormSubmit}
-                                handleFormBook={handleFormBook}
-                                />
-                                {/* Ruben Additions Ends*/}
+
+                                <h1>Trip To Miami</h1>
+                                <p>9/18/9/21</p>
+
                             </div>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -221,15 +219,8 @@ const Trip = () => {
                             <MenuMainOverviewItem
                                 title="Accomodations"
                             >
-                            <div heading={'List Of Properties'}>
-                                {listing ? (
-                                <PropertyDetail
-                                list = {homes}
-                                />
-                                ) : (
-                                <h3>No Results to Display</h3>
-                                )}
-                            </div>
+                                <button className='addNewAccomodationsButton' onClick={() => { setModalIsOpen((prevState) => !prevState) }}>Add New Accomodations</button>
+
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -284,9 +275,8 @@ const Trip = () => {
                 </div>
             </div>
         </>
-        )
+    )
     // Ruben Added
 } //Ruben Comented
-
 
 export default Trip

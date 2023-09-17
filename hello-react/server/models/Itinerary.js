@@ -17,7 +17,7 @@ const itinerarySchema = new Schema({
         trim: true,
     },
     guests: {
-        type: String,
+        type: Number,
         required: true,
         trim: true,
     },
