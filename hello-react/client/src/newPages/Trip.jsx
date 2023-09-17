@@ -3,10 +3,13 @@ import './Trip.css'
 import caret from './assets/Icons/caret.svg'
 import caretRight from './assets/Icons/caretRight.svg'
 import miami from './assets/cityImages/Miami.jpg'
-import {useParams} from "react-router-dom"
+import { useParams } from "react-router-dom"
+import x from './assets/Icons/X.svg'
 
-function Trip() {
-    let { id } = useParams();
+
+// function Trip() { 
+//     let { id } = useParams();
+// }
 
 import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
@@ -15,57 +18,109 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const Trip = () => {
 
-   
-    const [city, setCity] = useState('');
-    const [startDate, setstartDate] = useState('');
-    const [endDate, setendDate] = useState('');
-    const [people, setpeople] = useState('');
-    const [listing, setListing] = useState();
-    const [homes, setHomes] = useState();
-    const query = {
-        city: city,
-        startDate: startDate,
-        endDate: endDate,
-        people: people
-      } 
-    
-      const searchProperty = async () => {
-        const response = await property(query)
-        setListing(response)
-        setHomes(response.data.homes);
-    }         
+    const [modalIsOpen, setModalIsOpen] = useState(false)
 
-    const handleInputChange_city = (e) => setCity(e.target.value);
-    const handleInputChange_startDate = (e) => setstartDate(e.target.value);
-    const handleInputChange_endDate = (e) => setendDate(e.target.value);
-    const handleInputChange_people = (e) => setpeople(e.target.value);
+    function CreateTrip() {
+
+        const [city, setCity] = useState('');
+        const [startDate, setstartDate] = useState('');
+        const [endDate, setendDate] = useState('');
+        const [people, setpeople] = useState('');
+        const [listing, setListing] = useState();
+        const [homes, setHomes] = useState();
+        const query = {
+            city: city,
+            startDate: startDate,
+            endDate: endDate,
+            people: people
+        }
+
+        const searchProperty = async () => {
+            const response = await property(query)
+            setListing(response)
+            setHomes(response.data.homes);
+        }
+
+        const handleInputChange_city = (e) => setCity(e.target.value);
+        const handleInputChange_startDate = (e) => setstartDate(e.target.value);
+        const handleInputChange_endDate = (e) => setendDate(e.target.value);
+        const handleInputChange_people = (e) => setpeople(e.target.value);
 
 
-    const handleFormSubmit = (e) => {
-        e.preventDefault()
-        query.city = { city }
-        query.startDate = {startDate}
-        query.endDate = {endDate}
-        query.people = {people}
-        console.log(query)
-        searchProperty(query);
-    };
+        const handleFormSubmit = (e) => {
+            e.preventDefault()
+            query.city = { city }
+            query.startDate = { startDate }
+            query.endDate = { endDate }
+            query.people = { people }
+            console.log(query)
+            searchProperty(query);
+        };
 
-    const handleFormBook = (e) => {
-        e.preventDefault()
-        query.city = { city }
-        query.startDate = {startDate}
-        query.endDate = {endDate}
-        query.people = {people}
-        console.log(query)
-        searchProperty(query);
-    };
+        const handleFormBook = (e) => {
+            e.preventDefault()
+            query.city = { city }
+            query.startDate = { startDate }
+            query.endDate = { endDate }
+            query.people = { people }
+            console.log(query)
+            searchProperty(query);
+        };
+
+        if (modalIsOpen) {
+            return (
+                <div>
+                    <div className='createNewTripBlur'>
+                    </div>
+                    <div className='createNewTripAccomodation'>
+                        <div className='createNewTripInterior'>
+                            <h1>New Accomodations</h1>
+                            <a className='closeButton' onClick={() => { setModalIsOpen((prevState) => !prevState) }}>
+                                <img src={x} className='closeButtonImage'></img>
+                            </a>
+
+
+                            <SearchForm
+                                city={city}
+                                handleInputChange_city={handleInputChange_city}
+                                startDate={startDate}
+                                handleInputChange_startDate={handleInputChange_startDate}
+                                endDate={endDate}
+                                handleInputChange_endDate={handleInputChange_endDate}
+                                people={people}
+                                handleInputChange_people={handleInputChange_people}
+                                handleFormSubmit={handleFormSubmit}
+                                handleFormBook={handleFormBook}
+                            />
+
+
+                            <div heading={'List Of Properties'}>
+                                {listing ? (
+                                    <PropertyDetail
+                                        list={homes}
+                                    />
+                                ) : (
+                                    <h3>No Results to Display</h3>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        return (
+            <>
+            </>
+        )
+    }
+
 
     const MenuMainOverviewItem = (props) => {
 
         const [active, setActive] = useState(false);
         const [open, setOpen] = useState(false);
-        
+
 
         if (active) {
             return (
@@ -119,12 +174,13 @@ const Trip = () => {
                     </a>
                     {open && props.children}
                 </div>
-                )   
-            }
+            )
+        }
 
     }
     return (
         <>
+            <CreateTrip></CreateTrip>
             <div className='tripMain'>
                 <div className='menuMain'>
                     <div className='menuSideBar'>
@@ -161,21 +217,10 @@ const Trip = () => {
                         <div className='menuMainInfoImageContainer'>
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
-                                                            
-                                <h1>Trip To </h1> 
-                                <SearchForm
-                                city = {city}
-                                handleInputChange_city={handleInputChange_city}
-                                startDate = {startDate}
-                                handleInputChange_startDate={handleInputChange_startDate}
-                                endDate = {endDate}
-                                handleInputChange_endDate={handleInputChange_endDate}
-                                people = {people}
-                                handleInputChange_people = {handleInputChange_people}
-                                handleFormSubmit={handleFormSubmit}
-                                handleFormBook={handleFormBook}
-                                />
-                                
+
+                                <h1>Trip To Miami</h1>
+                                <p>9/18/9/21</p>
+
                             </div>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -203,15 +248,8 @@ const Trip = () => {
                             <MenuMainOverviewItem
                                 title="Accomodations"
                             >
-                            <div heading={'List Of Properties'}>
-                                {listing ? (
-                                <PropertyDetail
-                                list = {homes}
-                                />
-                                ) : (
-                                <h3>No Results to Display</h3>
-                                )}
-                            </div>
+                                <button className='addNewAccomodationsButton' onClick={() => { setModalIsOpen((prevState) => !prevState) }}>Add New Accomodations</button>
+
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -266,7 +304,7 @@ const Trip = () => {
                 </div>
             </div>
         </>
-        )
+    )
     // Ruben Added
 } //Ruben Comented
 
