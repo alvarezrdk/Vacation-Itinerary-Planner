@@ -40,6 +40,7 @@ const typeDefs = gql`
     guests: String
   }
 
+
   type Auth {
     token: ID!
     profile: Profile
@@ -49,7 +50,8 @@ const typeDefs = gql`
     allProfiles: [Profile]!
     singleProfile(profileId: ID!): Profile
     allItineraries: [Itinerary]!
-    singleitinerary(itineraryId: ID!): Itinerary
+    singleItinerary(itineraryId: ID!): Itinerary
+    restaurantsByLocation(location: String!): [Restaurants]
 
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
   }
@@ -76,6 +78,7 @@ const typeDefs = gql`
     deleteItinerary(itineraryId: ID!): Itinerary
     deleteRestaurant(restaurantId: ID!): Restaurants
     deleteEx(exId: ID!): Experiences
+ 
   }
 `;
 
