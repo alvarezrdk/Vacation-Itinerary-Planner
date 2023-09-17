@@ -44,7 +44,6 @@ const Create = ({ }) => {
           <div className='modalFormInputContainer'>
             <label>Where To?</label>
             <input
-
               value={location}
               className="modalFormInput"
               onChange={(event) => setLocation(event.target.value)}
@@ -78,7 +77,7 @@ const Create = ({ }) => {
 
             />
           </div>
-          <div className="">
+          <div className="modalFormInputContainer">
             <button className="modalFormInputButton" type="submit">
               Create your perfect trip itinerary
             </button>

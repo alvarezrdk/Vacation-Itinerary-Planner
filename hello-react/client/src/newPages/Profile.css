@@ -124,7 +124,6 @@
 }
 
 .createNewTrip {
-    /* display: none; */
     position: fixed;
     z-index: 6;
     background-color: var(--bg2);
