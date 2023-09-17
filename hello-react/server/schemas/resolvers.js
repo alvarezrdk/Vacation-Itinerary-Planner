@@ -1,14 +1,14 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile, Itinerary, Restaurants, Experiences } = require('../models'); 
+const { Profile, Itinerary, Restaurants, Experiences, NightLife } = require('../models'); 
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    allProfiles: async () => {
-      return Profile.find();
-    },
     singleProfile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
+    },
+    allProfiles: async () => {
+      return Profile.find();
     },
     allItineraries: async () => {
       return Itinerary.find();
@@ -16,6 +16,16 @@ const resolvers = {
     singleItinerary: async (parent, { itineraryId }) => {
       return Itinerary.findOne({ _id: itineraryId });
     },
+    // Query to get all restaurants in a specific location
+    restaurantsByLocation: async (parent, { location }) => {
+      return Restaurants.find({ location });
+    },
+    // allNightLife: async () => {
+    //   return NightLife.find();
+    // },
+    // nightLifeByLocation: async (parent, { location }) => {
+    //   return NightLife.find({ location });
+    // },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
   },
 
@@ -43,13 +53,13 @@ const resolvers = {
       return { token, profile };
     },
 
-    createItinerary: async (parent, { location, startDate, endDate, airbnbAddress, airbnbCheckInDate, airbnbCheckOutDate, guests }) => {
-      const itinerary = await Itinerary.create({ location, startDate, endDate, airbnbAddress, airbnbCheckInDate, airbnbCheckOutDate, guests });
+    createItinerary: async (parent, { location, startDate, endDate, guests }) => {
+      const itinerary = await Itinerary.create({ location, startDate, endDate, guests });
       return itinerary;
     },
 
     createRestaurant: async (parent, { name, cuisine, location, reservationDate, reservationTime, guests }) => {
-      const restaurant = await Restaurants.create({ name, cuisine, location, reservationDate, reservationTime, guests });
+      const restaurant = await Restaurants.create({ name, cuisine,  location, reservationDate, reservationTime, guests });
       return restaurant;
     },
 
@@ -72,6 +82,20 @@ const resolvers = {
       return itinerary;
     },
 
+    addAirbnbToItinerary: async (parent, {itineraryId, airbnbName, airbnbCheckInDate, airbnbCheckOutDate} ) => {
+      const itinerary = await Itinerary.findOneAndUpdate(
+        { _id: itineraryId },
+        {
+          $addToSet: { airbnbName: airbnbName, airbnbCheckInDate: airbnbCheckInDate, airbnbCheckOutDate: airbnbCheckOutDate },
+        },
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
+      return itinerary;
+    },
+
     addExToItinerary: async (parent, { itineraryId, exId }) => {
       const itinerary = await Itinerary.findOneAndUpdate(
         { _id: itineraryId },
@@ -85,6 +109,11 @@ const resolvers = {
       );
       return itinerary;
     },
+    // createNightLife: async (parent, { name, type, address, description }) => {
+    //   const nightlife = await NightLife.create({ name, type, address, description });
+    //   return nightlife;
+    // },
+    
     
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {

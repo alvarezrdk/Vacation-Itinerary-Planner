@@ -7,8 +7,9 @@ import miami from './assets/cityImages/Miami.jpg'
 import nyc from './assets/cityImages/NewYorkCity.jpg'
 import chicago from './assets/cityImages/Chicago.jpg'
 import atlanta from './assets/cityImages/Atlanta.jpg'
+import x from './assets/Icons/X.svg'
 
-// import Create from './create';
+import Create from '../pages/Create';
 
 function Trip(props) {
     return (
@@ -26,18 +27,38 @@ function Trip(props) {
 }
 
 function Profile() {
-    return (
-        <>
-            <div className='createNewTripBlur'>
-            </div>
-            <div className='createNewTrip'>
-                <div className='createNewTripInterior'>
-                    <h1>New Trip</h1>
-                    {/* <Create></Create> */}
+
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+
+    function CreateTrip() {
+
+        if (modalIsOpen) {
+            return (
+                <div>
+                <div className='createNewTripBlur'>
+                </div>
+                <div className='createNewTrip'>
+                    <div className='createNewTripInterior'>
+                        <h1>New Trip</h1>
+                        <a className='closeButton' onClick={() => { setModalIsOpen((prevState) => !prevState)}}>
+                            <img src={x} className='closeButtonImage'></img>
+                        </a>
+                        <Create></Create>
+                    </div>
                 </div>
             </div>
+            )
+        }
+    
+        return (
+            <>
+            </>
+        )
+    }
 
-
+    return (
+        <>
+            <CreateTrip></CreateTrip>
             <div className='profileMain'>
                 <div className='profileCategory'>
                     <div className='profileImageContainer'>
@@ -70,7 +91,7 @@ function Profile() {
 
                 <div className='upcomingTripsContainer'>
                     <h1>Upcoming Trips</h1>
-                    <button className='profileButton zoom'><img src={mapIcon}></img>Plan a New Trip</button>
+                    <button className='profileButton zoom' onClick={() => { setModalIsOpen((prevState) => !prevState)}}><img src={mapIcon}></img>Plan a New Trip</button>
                 </div>
 
 

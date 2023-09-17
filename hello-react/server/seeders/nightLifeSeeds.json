@@ -4,37 +4,27 @@
         "name": "Beta Nightclub",
         "type": "Nightclub",
         "address": "1909 Blake St, Denver, CO",
-        "description": "Experience the electrifying nightlife at Beta Nightclub. Dance to the beats of top DJs in an immersive environment with state-of-the-art lighting and sound.",
-        "cover_charge": 20.00,
-        "opening_hours": "10:00 PM - 2:00 AM",
-        "website": "http://www.betanightclub.com"
+        "description": "Experience the electrifying nightlife at Beta Nightclub. Dance to the beats of top DJs in an immersive environment with state-of-the-art lighting and sound."
+        
       },
       {
         "name": "The Church Nightclub",
         "type": "Nightclub",
         "address": "1160 Lincoln St, Denver, CO",
-        "description": "Party in a converted church at The Church Nightclub. Enjoy multiple dance floors, a rooftop patio, and a diverse range of music and events.",
-        "cover_charge": 15.00,
-        "opening_hours": "9:00 PM - 2:00 AM",
-        "website": "http://www.churchnightclub.com"
+        "description": "Party in a converted church at The Church Nightclub. Enjoy multiple dance floors, a rooftop patio, and a diverse range of music and events."
+       
       },
       {
         "name": "Ophelia's Electric Soapbox",
         "type": "Live Music Venue",
         "address": "1215 20th St, Denver, CO",
-        "description": "Immerse yourself in the vibrant Denver nightlife at Ophelia's Electric Soapbox. Enjoy live music, burlesque shows, and a unique dining experience.",
-        "cover_charge": 10.00,
-        "opening_hours": "6:00 PM - 2:00 AM",
-        "website": "http://www.opheliasdenver.com"
+        "description": "Immerse yourself in the vibrant Denver nightlife at Ophelia's Electric Soapbox. Enjoy live music, burlesque shows, and a unique dining experience."
       },
       {
         "name": "The Thin Man",
         "type": "Dive Bar",
         "address": "2015 E 17th Ave, Denver, CO",
-        "description": "Experience the local vibe at The Thin Man, a classic Denver dive bar. Enjoy affordable drinks, friendly crowds, and a laid-back atmosphere.",
-        "cover_charge": 5.00,
-        "opening_hours": "4:00 PM - 2:00 AM",
-        "website": "Not available"
+        "description": "Experience the local vibe at The Thin Man, a classic Denver dive bar. Enjoy affordable drinks, friendly crowds, and a laid-back atmosphere."
       }
     ],
     "miami_nightlife": [
@@ -42,46 +32,34 @@
         "name": "LIV at the Fontainebleau Miami Beach",
         "type": "Nightclub",
         "address": "4441 Collins Ave, Miami Beach, FL",
-        "description": "Experience the high-energy nightlife at LIV, one of Miami's most iconic nightclubs. Enjoy live performances by top DJs and a vibrant atmosphere.",
-        "cover_charge": 30.00,
-        "opening_hours": "10:00 PM - 5:00 AM",
-        "website": "http://www.livnightclub.com"
+        "description": "Experience the high-energy nightlife at LIV, one of Miami's most iconic nightclubs. Enjoy live performances by top DJs and a vibrant atmosphere."
       },
       {
         "name": "E11EVEN Miami",
         "type": "Nightclub",
         "address": "29 NE 11th St, Miami, FL",
-        "description": "E11EVEN is a 24/7 nightclub with rooftop lounge offering DJs, dancers, and a lively atmosphere. It's the place to party all night long.",
-        "cover_charge": 40.00,
-        "opening_hours": "Open 24/7",
-        "website": "http://www.11miami.com"
+        "description": "E11EVEN is a 24/7 nightclub with rooftop lounge offering DJs, dancers, and a lively atmosphere. It's the place to party all night long."
+        
       },
       {
         "name": "Ball & Chain",
         "type": "Live Music Venue",
         "address": "1513 SW 8th St, Miami, FL",
         "description": "Immerse yourself in the vibrant Little Havana nightlife at Ball & Chain. Enjoy live music, salsa dancing, and delicious cocktails.",
-        "cover_charge": 15.00,
-        "opening_hours": "8:00 PM - 2:00 AM",
-        "website": "http://www.ballandchainmiami.com"
+        "opening_hours": "8:00 PM - 2:00 AM"
       },
       {
         "name": "The Electric Pickle",
         "type": "Electronic Music Venue",
         "address": "2826 N Miami Ave, Miami, FL",
-        "description": "Dance the night away to electronic beats at The Electric Pickle. It's a favorite spot for underground music enthusiasts.",
-        "cover_charge": 20.00,
-        "opening_hours": "10:00 PM - 5:00 AM",
-        "website": "http://www.electricpicklemiami.com"
+        "description": "Dance the night away to electronic beats at The Electric Pickle. It's a favorite spot for underground music enthusiasts."
       },
       {
         "name": "Clevelander South Beach",
         "type": "Beachfront Bar and Lounge",
         "address": "1020 Ocean Dr, Miami Beach, FL",
-        "description": "Enjoy oceanfront nightlife at Clevelander South Beach. It offers live music, DJs, and a fun beachfront atmosphere.",
-        "cover_charge": 25.00,
-        "opening_hours": "11:00 AM - 2:00 AM",
-        "website": "http://www.clevelander.com"
+        "description": "Enjoy oceanfront nightlife at Clevelander South Beach. It offers live music, DJs, and a fun beachfront atmosphere."
+        
       }
     ]
   }
