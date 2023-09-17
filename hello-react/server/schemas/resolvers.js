@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Profile, Itinerary, Restaurants, Experiences } = require('../models'); 
+const { Profile, Itinerary, Restaurants, Experiences, NightLife } = require('../models'); 
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -16,6 +16,16 @@ const resolvers = {
     singleItinerary: async (parent, { itineraryId }) => {
       return Itinerary.findOne({ _id: itineraryId });
     },
+    // Query to get all restaurants in a specific location
+    restaurantsByLocation: async (parent, { location }) => {
+      return Restaurants.find({ location });
+    },
+    // allNightLife: async () => {
+    //   return NightLife.find();
+    // },
+    // nightLifeByLocation: async (parent, { location }) => {
+    //   return NightLife.find({ location });
+    // },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
   },
 
@@ -49,7 +59,7 @@ const resolvers = {
     },
 
     createRestaurant: async (parent, { name, cuisine, location, reservationDate, reservationTime, guests }) => {
-      const restaurant = await Restaurants.create({ name, cuisine, location, reservationDate, reservationTime, guests });
+      const restaurant = await Restaurants.create({ name, cuisine,  location, reservationDate, reservationTime, guests });
       return restaurant;
     },
 
@@ -99,6 +109,11 @@ const resolvers = {
       );
       return itinerary;
     },
+    // createNightLife: async (parent, { name, type, address, description }) => {
+    //   const nightlife = await NightLife.create({ name, type, address, description });
+    //   return nightlife;
+    // },
+    
     
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
