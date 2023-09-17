@@ -20,25 +20,29 @@ const Trip = () => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
-    function CreateTrip() {
+    //function 
+    const CreateTrip = () => {
 
         const [city, setCity] = useState('');
-        const [startDate, setstartDate] = useState('');
-        const [endDate, setendDate] = useState('');
-        const [people, setpeople] = useState('');
+        const [startDate, setstartDate] = useState(Date);
+        const [endDate, setendDate] = useState(Date);
+        const [people, setpeople] = useState(Number);
         const [listing, setListing] = useState();
         const [homes, setHomes] = useState();
+        
         const query = {
-            city: city,
-            startDate: startDate,
-            endDate: endDate,
-            people: people
+            city: '',
+            startDate: '',
+            endDate: '',
+            people: ''
         }
 
-        const searchProperty = async () => {
+        const searchProperty = async (query) => {
             const response = await property(query)
             setListing(response)
+            console.log(response)
             setHomes(response.data.homes);
+            console.log(homes);
         }
 
         const handleInputChange_city = (e) => setCity(e.target.value);
@@ -59,12 +63,7 @@ const Trip = () => {
 
         const handleFormBook = (e) => {
             e.preventDefault()
-            query.city = { city }
-            query.startDate = { startDate }
-            query.endDate = { endDate }
-            query.people = { people }
-            console.log(query)
-            searchProperty(query);
+
         };
 
         if (modalIsOpen) {
@@ -79,7 +78,6 @@ const Trip = () => {
                                 <img src={x} className='closeButtonImage'></img>
                             </a>
 
-
                             <SearchForm
                                 city={city}
                                 handleInputChange_city={handleInputChange_city}
@@ -90,9 +88,7 @@ const Trip = () => {
                                 people={people}
                                 handleInputChange_people={handleInputChange_people}
                                 handleFormSubmit={handleFormSubmit}
-                                handleFormBook={handleFormBook}
                             />
-
 
                             <div heading={'List Of Properties'}>
                                 {listing ? (
@@ -305,7 +301,7 @@ const Trip = () => {
             </div>
         </>
     )
-    // Ruben Added
-} //Ruben Comented
+    
+} 
 
-export default Trip
+export default Trip;
