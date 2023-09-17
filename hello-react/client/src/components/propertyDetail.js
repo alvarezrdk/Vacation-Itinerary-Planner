@@ -6,25 +6,29 @@ function PropertyDetail(props) {
 
   if (!props.list?.length) {
     return null;
-  } else { 
+  } else {
     console.log(result)
   }
 
   return (
     <div className="text-center">
-        {result.map((item, index) => (
-          <ul>
-            <li id={`nam-${index}`} key={`name-${index}`}>Property Name: {item.listing.name}</li>
-            <li id={`cit-${index}`} key={`city-${index}`}>City: {item.listing.city}</li>
-            <li id={`pri-${index}`} key={`price-${index}`}>Price: {item.pricingQuote.structuredStayDisplayPrice.primaryLine.accessibilityLabel}</li>
-            <img src={item.listing.contextualPictures[0].picture}></img>
-          <button
-            onClick={props.handleFormAdd}
-            type="submit"
+      <h1 className='airbnbResults'>Results!</h1>
+      {result.map((item, index) => (
+        <div className='airbnbListingContainer'>
+          <img className='airbnbListingImage' src={item.listing.contextualPictures[0].picture}></img>
+          <div className='airbnbListingText'>
+            <p className="airbnbListingSubText" id={`nam-${index}`} key={`name-${index}`}>Property Name: {item.listing.name}</p>
+            <p className='airbnbListingSubText' id={`cit-${index}`} key={`city-${index}`}>City: {item.listing.city}</p>
+            <p className='airbnbListingSubText' id={`pri-${index}`} key={`price-${index}`}>Price: {item.pricingQuote.structuredStayDisplayPrice.primaryLine.accessibilityLabel}</p>
+            <button
+              className='airbnbListingButton'
+              onClick={props.handleFormAdd}
+              type="submit"
             > Add to Itinerary
-          </button>
-          </ul>
-        ))}
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
