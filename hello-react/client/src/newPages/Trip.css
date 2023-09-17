@@ -161,12 +161,12 @@
     margin-bottom: 10vh;
 }
 
-.tripModalForm {
-    overflow: auto;
-}
+/* .tripModalForm {
+    
+} */
 
 .createNewTripAccomodation {
-    /* display: none; */
+    overflow: auto;
     position: fixed;
     z-index: 6;
     background-color: var(--bg2);
@@ -175,8 +175,44 @@
     border-radius: 20px;
     width: 50vw;
     height: min-content;
-    max-height: 60vh;
+    max-height: 80vh;
     left: 25vw;
-    top: 15vh;
+    top: 10vh;
     box-shadow: 0 0 30px rgba(0,0,0,0.3);
+}
+
+.airbnbResults {
+    width: min-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.airbnbListingSubText {
+    padding: 0.5vw;
+}
+
+.airbnbListingContainer {
+    display: flex;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.airbnbListingText {
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.airbnbListingImage {
+    border: solid 5px var(--textColorDark);
+    border-radius: 50%;
+    object-fit: cover;
+    width: 15vw;
+    height: 15vw;
+}
+
+.airbnbListingButton {
+    margin: 0;
+    width: 50%;
 }
