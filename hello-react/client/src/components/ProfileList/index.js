@@ -5,31 +5,33 @@ import SearchForm from '../Search/SearchForm';
 import Col from '../Col';
 import Card from '../Card';
 import Row from '../Row';
-import API from '../API';
+import property from '../API';
 import PropertyDetail from '../propertyDetail';
 
 
 const ProfileList = ({ profiles, title }) => {
 
-  const [city, setSearch] = useState('');
+  const [city, setCity] = useState('');
   const [listing, setListing] = useState();
   const [homes, setHomes] = useState([]);
 
-  // useEffect(() => {
-  //   property('Miami, FL');
-  // }, []);
+  const query = {
+    city: city,
+  }
 
   const searchProperty = async () => {
-    const response = await API.property()
+    const response = await property(query)
     setListing(response)
     setHomes(response.data.homes);
   }
 
-  const handleInputChange = (e) => setSearch(e.target.value);
+  const handleInputChange = (e) => setCity(e.target.value);
 
   const handleFormSubmit = (e) => {
-    e.preventDefault();
-    searchProperty();
+    e.preventDefault()
+    query.city = { city }
+    console.log(query)
+    searchProperty(query);
   };
 
   return (
@@ -49,7 +51,7 @@ const ProfileList = ({ profiles, title }) => {
         <Col size="md-4">
           <Card heading="Search">
             <SearchForm
-              value={city}
+              city={city}
               handleInputChange={handleInputChange}
               handleFormSubmit={handleFormSubmit}
             />
