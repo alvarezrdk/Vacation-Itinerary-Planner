@@ -11,7 +11,7 @@ function SearchForm(props) {
           <input
             onChange={props.handleInputChange_city}
             value={props.city}
-            name="search"
+            name="city"
             type="text"
             className="form-control modalFormInput"
             id="city"
@@ -22,7 +22,7 @@ function SearchForm(props) {
           <input
             onChange={props.handleInputChange_startDate}
             value={props.startDate}
-            name="search"
+            name="startDate"
             type="date"
             className="form-control modalFormInput"
             placeholder="Start Date"
@@ -34,7 +34,7 @@ function SearchForm(props) {
           <input
             onChange={props.handleInputChange_endDate}
             value={props.endDate}
-            name="search"
+            name="endtDate"
             type="date"
             className="form-control modalFormInput"
             placeholder="End Date"
@@ -46,8 +46,10 @@ function SearchForm(props) {
           <input
             onChange={props.handleInputChange_people}
             value={props.people}
-            name="search"
+            name="people"
             type="number"
+            min="1" 
+            max="10"
             className="form-control modalFormInput"
             placeholder="How Many People"
             id="people"

@@ -2,13 +2,16 @@ import axios from 'axios';
 
 
 async function property(props) {
-  const { city } = props.city;
-  const { checkin } = props.startDate;
-  const { checkout } = props.endDate;
-  const { adults } = props.people;
+  const city = props.city.city;
+  const checkin = props.startDate.startDate;
+  const checkout  = props.endDate.endDate;
+  const adults = props.people.people;
 
   try {
     console.log(city);
+    console.log(checkin);
+    console.log(checkout);
+    console.log(adults);
     const apiFilter = {
       method: 'GET',
       url: 'https://airbnb-search.p.rapidapi.com/property/search',

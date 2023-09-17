@@ -1,7 +1,8 @@
 import React from 'react';
 
 function PropertyDetail(props) {
-  const result = props.list.slice(1);
+  console.log(props);
+  const result = props.list;
 
   if (!props.list?.length) {
     return null;
@@ -18,9 +19,9 @@ function PropertyDetail(props) {
             <li id={`pri-${index}`} key={`price-${index}`}>Price: {item.pricingQuote.structuredStayDisplayPrice.primaryLine.accessibilityLabel}</li>
             <img src={item.listing.contextualPictures[0].picture}></img>
           <button
-            onClick={props.handleFormBook}
+            onClick={props.handleFormAdd}
             type="submit"
-            > Book
+            > Add to Itinerary
           </button>
           </ul>
         ))}
