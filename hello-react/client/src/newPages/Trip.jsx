@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Trip.css'
-
 import caret from './assets/Icons/caret.svg'
 import caretRight from './assets/Icons/caretRight.svg'
 import miami from './assets/cityImages/Miami.jpg'
-
-
-
+import {useParams} from "react-router-dom"
 
 function Trip() {
+    let { id } = useParams();
 
     function MenuMainOverviewItem(props) {
 
@@ -196,6 +194,5 @@ function Trip() {
         </>
     )
 }
-
 
 export default Trip

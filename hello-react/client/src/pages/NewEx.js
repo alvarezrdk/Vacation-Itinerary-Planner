@@ -4,12 +4,12 @@ import { useMutation } from '@apollo/client';
 import { ADD_EX_TO_ITINERARY } from '../utils/mutations';
 import Auth from '../../utils/auth';
 
-const Create = ({ profileId }) => {
+const Create = ({ }) => {
   const [location, setLocation] = useState('');
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
-  const [guests, setGuests] = useState('');
+  const [guests, setGuests] = useState(0);
 
   const [createEx, { error }] = useMutation(ADD_EX_TO_ITINERARY);
 
@@ -18,7 +18,7 @@ const Create = ({ profileId }) => {
 
     try {
       const data = await createEx({
-        variables: { profileId, name, location, date, time, guests },
+        variables: { name: name, location: location, date: date, time: time, guests: parseInt(guests) },
       });
       console.log(data)
 
@@ -26,7 +26,7 @@ const Create = ({ profileId }) => {
       setName('');
       setDate('');
       setTime('');
-      setGuests('');
+      setGuests(0);
     } catch (err) {
       console.error(err);
     }

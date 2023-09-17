@@ -14,6 +14,7 @@ import Signup from './newPages/SignUp';
 import Header from './newPages/Header';
 import Footer from './newPages/Footer';
 import Trip from './newPages/Trip';
+import Create from './pages/Create';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -44,26 +45,29 @@ function App() {
           <Header />
           <div className="container">
             <Routes>
-              <Route 
-                path="/" 
-                element={<Home />} 
+              <Route
+                path="/"
+                element={<Home />}
               />
-              <Route 
-                path="/signup" 
-                element={<Signup />} 
+              <Route
+                path="/signup"
+                element={<Signup />}
               />
-              <Route 
-                path="/profile" 
-                element={<Profile />} 
+              <Route
+                path="/profile"
+                element={<Profile />}
               />
-              <Route 
-                path="/profile/trip" 
-                element={<Trip />} 
+              <Route
+                path="/profile/trip"
+                element={<Trip />}
               />
-               {/* <Route 
-                path="/create" 
-                element={<Create />} 
-              /> */}
+              <Route
+                path="/create"
+                element={<Create />}
+              />
+              <Route
+                path="profile/trip/:id" element={<Trip />} 
+                />
             </Routes>
           </div>
           <Footer />
