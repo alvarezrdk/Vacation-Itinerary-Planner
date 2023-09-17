@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import './Trip.css'
-
 import caret from './assets/Icons/caret.svg'
 import caretRight from './assets/Icons/caretRight.svg'
 import miami from './assets/cityImages/Miami.jpg'
+import {useParams} from "react-router-dom"
 
-// Ruben Additions Start
+function Trip() {
+    let { id } = useParams();
+
 import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
 import SearchForm from '../components/Search/SearchForm';
 import { loadStripe } from '@stripe/stripe-js';
-//Ruben Additions Ends
 
-
-
-
-//function Trip() { Ruben commented
 const Trip = () => {
 
-    // Ruben Additions Start
+   
     const [city, setCity] = useState('');
     const [startDate, setstartDate] = useState('');
     const [endDate, setendDate] = useState('');
@@ -63,8 +60,6 @@ const Trip = () => {
         console.log(query)
         searchProperty(query);
     };
-
-    // Ruben Additions End
 
     const MenuMainOverviewItem = (props) => {
 
@@ -166,7 +161,7 @@ const Trip = () => {
                         <div className='menuMainInfoImageContainer'>
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
-                                {/* Ruben Additions Start*/}                                 
+                                                            
                                 <h1>Trip To </h1> 
                                 <SearchForm
                                 city = {city}
@@ -180,7 +175,7 @@ const Trip = () => {
                                 handleFormSubmit={handleFormSubmit}
                                 handleFormBook={handleFormBook}
                                 />
-                                {/* Ruben Additions Ends*/}
+                                
                             </div>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -274,6 +269,5 @@ const Trip = () => {
         )
     // Ruben Added
 } //Ruben Comented
-
 
 export default Trip

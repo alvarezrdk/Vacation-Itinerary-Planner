@@ -4,30 +4,36 @@ import { useMutation } from '@apollo/client';
 import { ADD_RESTAURANT_TO_ITINERARY } from '../utils/mutations';
 import Auth from '../../utils/auth';
 
-const Create = ({ profileId }) => {
+const Create = ({  }) => {
     const [name, setName] = useState('');
     const [location, setLocation] = useState('');
     const [reservationDate, setReservationDate] = useState('');
     const [reservationTime, setReservationTime] = useState('');
     const [cuisine, setCuisine] = useState('');
-    const [guests, setGuests] = useState('');
+    const [guests, setGuests] = useState(1);
 
-
-    const [addRestaurantToItinerary, { error }] = useMutation(ADD_RESTAURANT_TO_ITINERARY);
+    const [createRestaurant, options] = useMutation(CREATE_ITINERARY);
+    const [addRestaurantToItinerary, addRestaurantOptions] = useMutation(ADD_RESTAURANT_TO_ITINERARY);
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const data = await addRestaurantToItinerary({
-                variables: { profileId, name, location, cuisine, reservationDate, reservationTime, guests },
+            const addRestaurantData = await createRestaurant({
+                variables: { name: name, location: location, cuisine: cuisine, reservationDate: reservationDate, reservationTime: reservationTime, guests: parseInt(guests) },
             });
-            console.log(data)
+            console.log(addRestaurantData)
+
+            // const data = await addRestaurantToItinerary({
+            //     variables: { itineraryId: itineraryId,  },
+            // });
+            // console.log(data)
+           
 
             setLocation('');
             setCuisine('');
             setReservationTime('');
-            setGuests('');
+            setGuests(1);
             setReservationDate('');
             setName('');
         } catch (err) {
