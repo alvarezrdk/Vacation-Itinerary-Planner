@@ -10,6 +10,8 @@ import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
 import SearchForm from '../components/Search/SearchForm';
 import { loadStripe } from '@stripe/stripe-js';
+import { useLazyQuery } from '@apollo/client';
+import { GET_BNB_RESERVATION } from '../utils/queries';
 //Ruben Additions Ends
 
 
@@ -25,6 +27,7 @@ const Trip = () => {
     const [people, setpeople] = useState('');
     const [listing, setListing] = useState();
     const [homes, setHomes] = useState();
+
     const query = {
         city: city,
         startDate: startDate,
@@ -32,11 +35,23 @@ const Trip = () => {
         people: people
       } 
     
-      const searchProperty = async () => {
+    const searchProperty = async () => {
         const response = await property(query)
         setListing(response)
         setHomes(response.data.homes);
-    }         
+    }
+
+    const [state, dispatch] = useState();
+    const stripePromise = loadStripe('pk_test_51Nr12cG3HMx6NAFGYTqkC7ydc1MpCyK3OHCJZdsxYWQks9aYqneBjhpNKxxifgY2ZbJIdcNHDgfTG0uMisXWM4zS008wp3C3xw');
+    const [getCheckout, { data }] = useLazyQuery(GET_BNB_RESERVATION);
+
+    useEffect(() => {
+        if (data) {
+          stripePromise.then((res) => {
+            res.redirectToCheckout({ sessionId: data.checkout.session });
+          });
+        }
+      }, [data]);
 
     const handleInputChange_city = (e) => setCity(e.target.value);
     const handleInputChange_startDate = (e) => setstartDate(e.target.value);
@@ -54,15 +69,13 @@ const Trip = () => {
         searchProperty(query);
     };
 
-    const handleFormBook = (e) => {
-        e.preventDefault()
-        query.city = { city }
-        query.startDate = {startDate}
-        query.endDate = {endDate}
-        query.people = {people}
-        console.log(query)
-        searchProperty(query);
-    };
+    const handleFormBook = () => {
+        getCheckout({
+          variables: { 
+            products: [...state.cart],
+          },
+        });
+      }
 
     // Ruben Additions End
 

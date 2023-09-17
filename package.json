@@ -21,6 +21,7 @@
     "apollo": "^2.34.0",
     "axios": "^1.5.0",
     "react-swipeable": "^7.0.1",
+    "stripe": "^13.6.0",
     "swipeable": "^1.0.5",
     "webpack": "^5.88.2"
   }
