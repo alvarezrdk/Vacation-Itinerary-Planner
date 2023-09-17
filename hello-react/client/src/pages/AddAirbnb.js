@@ -6,8 +6,8 @@ import { ADD_AIRBNB_TO_ITINERARY } from '../utils/mutations';
 
 const Create = ({ profileId }) => {
   const [name, setName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [checkInDate, setCheckIn] = useState('');
+  const [checkOutDate, setCheckOut] = useState('');
   const [guests, setGuests] = useState('');
 
   const [createItinerary, { error }] = useMutation(ADD_AIRBNB_TO_ITINERARY);
@@ -17,7 +17,7 @@ const Create = ({ profileId }) => {
 
     try {
       const data = await createItinerary({
-        variables: { profileId, name, startDate, endDate, guests },
+        variables: { profileId, name, airbnbCheckInDate, airbnbCheckOutDate, guests },
       });
       console.log(data)
 
