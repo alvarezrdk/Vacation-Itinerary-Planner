@@ -5,15 +5,72 @@ import caret from './assets/Icons/caret.svg'
 import caretRight from './assets/Icons/caretRight.svg'
 import miami from './assets/cityImages/Miami.jpg'
 
+// Ruben Additions Start
+import PropertyDetail from '../components/propertyDetail';
+import property from '../components/API';
+import SearchForm from '../components/Search/SearchForm';
+import { loadStripe } from '@stripe/stripe-js';
+//Ruben Additions Ends
 
 
 
-function Trip() {
 
-    function MenuMainOverviewItem(props) {
+//function Trip() { Ruben commented
+const Trip = () => {
+
+    // Ruben Additions Start
+    const [city, setCity] = useState('');
+    const [startDate, setstartDate] = useState('');
+    const [endDate, setendDate] = useState('');
+    const [people, setpeople] = useState('');
+    const [listing, setListing] = useState();
+    const [homes, setHomes] = useState();
+    const query = {
+        city: city,
+        startDate: startDate,
+        endDate: endDate,
+        people: people
+      } 
+    
+      const searchProperty = async () => {
+        const response = await property(query)
+        setListing(response)
+        setHomes(response.data.homes);
+    }         
+
+    const handleInputChange_city = (e) => setCity(e.target.value);
+    const handleInputChange_startDate = (e) => setstartDate(e.target.value);
+    const handleInputChange_endDate = (e) => setendDate(e.target.value);
+    const handleInputChange_people = (e) => setpeople(e.target.value);
+
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        query.city = { city }
+        query.startDate = {startDate}
+        query.endDate = {endDate}
+        query.people = {people}
+        console.log(query)
+        searchProperty(query);
+    };
+
+    const handleFormBook = (e) => {
+        e.preventDefault()
+        query.city = { city }
+        query.startDate = {startDate}
+        query.endDate = {endDate}
+        query.people = {people}
+        console.log(query)
+        searchProperty(query);
+    };
+
+    // Ruben Additions End
+
+    const MenuMainOverviewItem = (props) => {
 
         const [active, setActive] = useState(false);
         const [open, setOpen] = useState(false);
+        
 
         if (active) {
             return (
@@ -42,7 +99,7 @@ function Trip() {
             )
     }
 
-    function MenuSideBarItem(props) {
+    const MenuSideBarItem = (props) => {
 
         const [open, setOpen] = useState(true);
         const [active, setActive] = useState(true);
@@ -57,7 +114,7 @@ function Trip() {
                     {open && props.children}
                 </div>
             )
-        } else
+        } else {
 
             return (
                 <div className='menuSideBarItem'>
@@ -67,7 +124,8 @@ function Trip() {
                     </a>
                     {open && props.children}
                 </div>
-            )
+                )   
+            }
 
     }
     return (
@@ -108,8 +166,21 @@ function Trip() {
                         <div className='menuMainInfoImageContainer'>
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
-                                <h1>Trip To Miami</h1>
-                                <p>9/18/9/21</p>
+                                {/* Ruben Additions Start*/}                                 
+                                <h1>Trip To </h1> 
+                                <SearchForm
+                                city = {city}
+                                handleInputChange_city={handleInputChange_city}
+                                startDate = {startDate}
+                                handleInputChange_startDate={handleInputChange_startDate}
+                                endDate = {endDate}
+                                handleInputChange_endDate={handleInputChange_endDate}
+                                people = {people}
+                                handleInputChange_people = {handleInputChange_people}
+                                handleFormSubmit={handleFormSubmit}
+                                handleFormBook={handleFormBook}
+                                />
+                                {/* Ruben Additions Ends*/}
                             </div>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -137,9 +208,15 @@ function Trip() {
                             <MenuMainOverviewItem
                                 title="Accomodations"
                             >
-                                <a>
-                                    <p>Restaurants</p>
-                                </a>
+                            <div heading={'List Of Properties'}>
+                                {listing ? (
+                                <PropertyDetail
+                                list = {homes}
+                                />
+                                ) : (
+                                <h3>No Results to Display</h3>
+                                )}
+                            </div>
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItemShaded'>
@@ -194,8 +271,9 @@ function Trip() {
                 </div>
             </div>
         </>
-    )
-}
+        )
+    // Ruben Added
+} //Ruben Comented
 
 
 export default Trip

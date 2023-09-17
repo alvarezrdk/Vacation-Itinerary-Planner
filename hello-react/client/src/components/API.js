@@ -3,6 +3,9 @@ import axios from 'axios';
 
 async function property(props) {
   const { city } = props.city;
+  const { checkin } = props.startDate;
+  const { checkout } = props.endDate;
+  const { adults } = props.people;
 
   try {
     console.log(city);
@@ -11,6 +14,9 @@ async function property(props) {
       url: 'https://airbnb-search.p.rapidapi.com/property/search',
       params: {
         query: city,
+        checkin: checkin,
+        checkout: checkout,
+        adults: adults
       },
       headers: {
         'X-RapidAPI-Key': 'ef0bd9f482msh63afeccd9f08d96p14e2f6jsn88cf7f9d5d03',
