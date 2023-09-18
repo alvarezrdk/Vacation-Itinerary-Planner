@@ -21,7 +21,7 @@ function PropertyDetail(props) {
             <p className='airbnbListingSubText' id={`cit-${index}`} key={`city-${index}`}>City: {item.listing.city}</p>
             <p className='airbnbListingSubText' id={`pri-${index}`} key={`price-${index}`}>Price: {item.pricingQuote.structuredStayDisplayPrice.primaryLine.accessibilityLabel}</p>
             <button
-              className='airbnbListingButton'
+              className='airbnbListingButton' value={item.listing.id}
               onClick={props.handleFormAdd}
               type="submit"
             > Add to Itinerary
