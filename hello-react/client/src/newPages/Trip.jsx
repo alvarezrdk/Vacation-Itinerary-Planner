@@ -15,12 +15,32 @@ import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
 import SearchForm from '../components/Search/SearchForm';
 import { loadStripe } from '@stripe/stripe-js';
+import { useMutation, gql } from '@apollo/client';
+import {ADD_AIRBNB_TO_ITINERARY} from '../../src/utils/mutations'
 
 const Trip = () => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [activityModalIsOpen, setActivityModalIsOpen] = useState(false)
     const [restaurantModalIsOpen, setRestaurantModalIsOpen] = useState(false)
+    const stripePromise = loadStripe("pk_test_51Nr12cG3HMx6NAFGYTqkC7ydc1MpCyK3OHCJZdsxYWQks9aYqneBjhpNKxxifgY2ZbJIdcNHDgfTG0uMisXWM4zS008wp3C3xw");
+
+    const payment = async (event) => {
+        
+        console.log('Payment function called.');
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: "price_1NrX87G3HMx6NAFGnWWFABDm", // Replace with the ID of your price
+                quantity: 5,
+            }],
+            mode: 'payment',
+            successUrl: 'http://localhost:3000/profile/trip#',
+            cancelUrl: 'http://localhost:3000',
+        });
+    
+    };
+    
 
 
     //function 
@@ -32,6 +52,8 @@ const Trip = () => {
         const [people, setpeople] = useState(Number);
         const [listing, setListing] = useState();
         const [homes, setHomes] = useState();
+
+        const [listingId, setlistingId] = useState();
 
         const query = {
             city: '',
@@ -52,7 +74,7 @@ const Trip = () => {
         const handleInputChange_startDate = (e) => setstartDate(e.target.value);
         const handleInputChange_endDate = (e) => setendDate(e.target.value);
         const handleInputChange_people = (e) => setpeople(e.target.value);
-
+        const [airbnbValues] = useMutation(ADD_AIRBNB_TO_ITINERARY);
 
         const handleFormSubmit = (e) => {
             e.preventDefault()
@@ -64,8 +86,24 @@ const Trip = () => {
             searchProperty(query);
         };
 
-        const handleFormBook = (e) => {
+        const payment = () => {}
+
+        const handleFormAdd = (e) => {
             e.preventDefault()
+            setlistingId(e.target.value);
+            console.log(listingId);
+
+            
+
+            airbnbValues({
+                variables: {
+                _id: 1234,
+                guests: query.people,
+                airbnbName: query.name,
+                airbnbCheckInDate: query.startDate,
+                airbnbCheckOutDate: query.endDate
+                }
+            })
 
         };
 
@@ -97,6 +135,7 @@ const Trip = () => {
                                 {listing ? (
                                     <PropertyDetail
                                         list={homes}
+                                    handleFormAdd = { handleFormAdd }
                                     />
                                 ) : (
                                     <h3>Pending Results</h3>
@@ -228,6 +267,7 @@ const Trip = () => {
 
     }
     return (
+        
         <>
             <CreateActivity></CreateActivity>
             <CreateRestaurant></CreateRestaurant>
@@ -260,6 +300,7 @@ const Trip = () => {
                         </MenuSideBarItem>
                         <MenuSideBarItem
                             title="Budget"
+                            
                         >
                             <p>Expenses</p>
                         </MenuSideBarItem>
@@ -269,8 +310,8 @@ const Trip = () => {
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
 
-                                <h1>Trip To Miami</h1>
-                                <p>9/18/9/21</p>
+                                <h1>Trip To Naples</h1>
+                                <p>From 9/22/2023 To 9/27/2023</p>
 
                             </div>
                         </div>
@@ -296,7 +337,7 @@ const Trip = () => {
                                 title="Accomodations"
                             >
                                 <button className='addNewAccomodationsButton' onClick={() => { setModalIsOpen((prevState) => !prevState) }}>Add New Accomodations</button>
-
+                                <button className='addNewAccomodationsButton' onClick={payment}>Pay for Accomodations</button>
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItemShaded'>

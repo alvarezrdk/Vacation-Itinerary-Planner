@@ -18,7 +18,7 @@ const itinerarySchema = new Schema({
     },
     guests: {
         type: Number,
-        required: true,
+        required: false,
         trim: true,
     },
     airbnbName: {

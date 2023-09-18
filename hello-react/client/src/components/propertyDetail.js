@@ -1,14 +1,14 @@
 import React from 'react';
 
 function PropertyDetail(props) {
-  console.log(props);
-  const result = props.list;
+  let result = props.list;
 
   if (!props.list?.length) {
     return null;
-  } else {
-    console.log(result)
-  }
+
+  } else { result = props.list.slice(1);
+  console.log(result); }
+
 
   return (
     <div className="text-center">
@@ -21,7 +21,7 @@ function PropertyDetail(props) {
             <p className='airbnbListingSubText' id={`cit-${index}`} key={`city-${index}`}>City: {item.listing.city}</p>
             <p className='airbnbListingSubText' id={`pri-${index}`} key={`price-${index}`}>Price: {item.pricingQuote.structuredStayDisplayPrice.primaryLine.accessibilityLabel}</p>
             <button
-              className='airbnbListingButton'
+              className='airbnbListingButton' value={item.listing.id}
               onClick={props.handleFormAdd}
               type="submit"
             > Add to Itinerary
