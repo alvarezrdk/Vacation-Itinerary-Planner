@@ -23,6 +23,24 @@ const Trip = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [activityModalIsOpen, setActivityModalIsOpen] = useState(false)
     const [restaurantModalIsOpen, setRestaurantModalIsOpen] = useState(false)
+    const stripePromise = loadStripe("pk_test_51Nr12cG3HMx6NAFGYTqkC7ydc1MpCyK3OHCJZdsxYWQks9aYqneBjhpNKxxifgY2ZbJIdcNHDgfTG0uMisXWM4zS008wp3C3xw");
+
+    const payment = async (event) => {
+        
+        console.log('Payment function called.');
+        const stripe = await stripePromise;
+        const { error } = await stripe.redirectToCheckout({
+            lineItems: [{
+                price: "price_1NrX87G3HMx6NAFGnWWFABDm", // Replace with the ID of your price
+                quantity: 5,
+            }],
+            mode: 'payment',
+            successUrl: 'http://localhost:3000/profile/trip#',
+            cancelUrl: 'http://localhost:3000',
+        });
+    
+    };
+    
 
 
     //function 
@@ -67,6 +85,8 @@ const Trip = () => {
             console.log(query)
             searchProperty(query);
         };
+
+        const payment = () => {}
 
         const handleFormAdd = (e) => {
             e.preventDefault()
@@ -221,9 +241,6 @@ const Trip = () => {
 
         const [open, setOpen] = useState(true);
         const [active, setActive] = useState(true);
-        const payment = () => {
-
-        }
 
         if (active) {
             return (
@@ -320,7 +337,7 @@ const Trip = () => {
                                 title="Accomodations"
                             >
                                 <button className='addNewAccomodationsButton' onClick={() => { setModalIsOpen((prevState) => !prevState) }}>Add New Accomodations</button>
-
+                                <button className='addNewAccomodationsButton' onClick={payment}>Pay for Accomodations</button>
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItemShaded'>
