@@ -15,6 +15,8 @@ import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
 import SearchForm from '../components/Search/SearchForm';
 import { loadStripe } from '@stripe/stripe-js';
+import { useMutation, gql } from '@apollo/client';
+import {ADD_AIRBNB_TO_ITINERARY} from '../../src/utils/mutations'
 
 const Trip = () => {
 
@@ -29,6 +31,7 @@ const Trip = () => {
         const [people, setpeople] = useState(Number);
         const [listing, setListing] = useState();
         const [homes, setHomes] = useState();
+        const [listingId, setlistingId] = useState();
         
         const query = {
             city: '',
@@ -49,7 +52,7 @@ const Trip = () => {
         const handleInputChange_startDate = (e) => setstartDate(e.target.value);
         const handleInputChange_endDate = (e) => setendDate(e.target.value);
         const handleInputChange_people = (e) => setpeople(e.target.value);
-
+        const [airbnbValues] = useMutation(ADD_AIRBNB_TO_ITINERARY);
 
         const handleFormSubmit = (e) => {
             e.preventDefault()
@@ -61,8 +64,22 @@ const Trip = () => {
             searchProperty(query);
         };
 
-        const handleFormBook = (e) => {
+        const handleFormAdd = (e) => {
             e.preventDefault()
+            setlistingId(e.target.value);
+            console.log(listingId);
+
+            
+
+            airbnbValues({
+                variables: {
+                _id: 1234,
+                guests: query.people,
+                airbnbName: query.name,
+                airbnbCheckInDate: query.startDate,
+                airbnbCheckOutDate: query.endDate
+                }
+            })
 
         };
 
@@ -94,6 +111,7 @@ const Trip = () => {
                                 {listing ? (
                                     <PropertyDetail
                                         list={homes}
+                                    handleFormAdd = { handleFormAdd }
                                     />
                                 ) : (
                                     <h3>Pending Results</h3>
@@ -149,6 +167,9 @@ const Trip = () => {
 
         const [open, setOpen] = useState(true);
         const [active, setActive] = useState(true);
+        const payment = () => {
+
+        }
 
         if (active) {
             return (
@@ -175,6 +196,7 @@ const Trip = () => {
 
     }
     return (
+        
         <>
             <CreateTrip></CreateTrip>
             <div className='tripMain'>
@@ -205,6 +227,7 @@ const Trip = () => {
                         </MenuSideBarItem>
                         <MenuSideBarItem
                             title="Budget"
+                            
                         >
                             <p>Expenses</p>
                         </MenuSideBarItem>
