@@ -310,8 +310,8 @@ const Trip = () => {
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
 
-                                <h1>Trip To Miami</h1>
-                                <p>9/18/9/21</p>
+                                <h1>Trip To Naples</h1>
+                                <p>From 9/22/2023 To 9/27/2023</p>
 
                             </div>
                         </div>
