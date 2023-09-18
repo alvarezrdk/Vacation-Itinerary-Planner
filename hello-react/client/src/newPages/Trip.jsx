@@ -19,6 +19,9 @@ import { loadStripe } from '@stripe/stripe-js';
 const Trip = () => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [activityModalIsOpen, setActivityModalIsOpen] = useState(false)
+    const [restaurantModalIsOpen, setRestaurantModalIsOpen] = useState(false)
+
 
     //function 
     const CreateTrip = () => {
@@ -29,7 +32,7 @@ const Trip = () => {
         const [people, setpeople] = useState(Number);
         const [listing, setListing] = useState();
         const [homes, setHomes] = useState();
-        
+
         const query = {
             city: '',
             startDate: '',
@@ -111,6 +114,56 @@ const Trip = () => {
         )
     }
 
+    const CreateActivity = () => {
+
+        if (activityModalIsOpen) {
+            return (
+                <div>
+                    <div className='createNewTripBlur'>
+                    </div>
+                    <div className='createNewTripAccomodation'>
+                        <div className='createNewTripInterior'>
+                            <h1>New Activity</h1>
+                            <a className='closeButton' onClick={() => { setActivityModalIsOpen((prevState) => !prevState) }}>
+                                <img src={x} className='closeButtonImage'></img>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        return (
+            <>
+            </>
+        )
+    }
+
+    const CreateRestaurant = () => {
+
+        if (restaurantModalIsOpen) {
+            return (
+                <div>
+                    <div className='createNewTripBlur'>
+                    </div>
+                    <div className='createNewTripAccomodation'>
+                        <div className='createNewTripInterior'>
+                            <h1>New Restaurants</h1>
+                            <a className='closeButton' onClick={() => { setRestaurantModalIsOpen((prevState) => !prevState) }}>
+                                <img src={x} className='closeButtonImage'></img>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        return (
+            <>
+            </>
+        )
+    }
+
 
     const MenuMainOverviewItem = (props) => {
 
@@ -176,6 +229,8 @@ const Trip = () => {
     }
     return (
         <>
+            <CreateActivity></CreateActivity>
+            <CreateRestaurant></CreateRestaurant>
             <CreateTrip></CreateTrip>
             <div className='tripMain'>
                 <div className='menuMain'>
@@ -226,18 +281,14 @@ const Trip = () => {
                             <MenuMainOverviewItem
                                 title="Restaurants"
                             >
-                                <a>
-                                    <p>Restaurants</p>
-                                </a>
+                                <button className='addNewAccomodationsButton' onClick={() => { setRestaurantModalIsOpen((prevState) => !prevState) }}>Add New Restaurants</button>
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItem'>
                             <MenuMainOverviewItem
                                 title="Activities"
                             >
-                                <a>
-                                    <p>Restaurants</p>
-                                </a>
+                                <button className='addNewAccomodationsButton' onClick={() => { setActivityModalIsOpen((prevState) => !prevState) }}>Add New Activities</button>
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItem'>
@@ -301,7 +352,7 @@ const Trip = () => {
             </div>
         </>
     )
-    
-} 
+
+}
 
 export default Trip;
