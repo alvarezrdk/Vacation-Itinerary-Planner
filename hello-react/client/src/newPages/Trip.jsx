@@ -6,11 +6,6 @@ import miami from './assets/cityImages/Miami.jpg'
 import { useParams } from "react-router-dom"
 import x from './assets/Icons/X.svg'
 
-
-// function Trip() { 
-//     let { id } = useParams();
-// }
-
 import PropertyDetail from '../components/propertyDetail';
 import property from '../components/API';
 import SearchForm from '../components/Search/SearchForm';
@@ -31,19 +26,16 @@ const Trip = () => {
         const stripe = await stripePromise;
         const { error } = await stripe.redirectToCheckout({
             lineItems: [{
-                price: "price_1NrX87G3HMx6NAFGnWWFABDm", // Replace with the ID of your price
+                price: "price_1NroUWG3HMx6NAFG0MVe6qg6", // Replace with the ID of your price
                 quantity: 5,
             }],
             mode: 'payment',
             successUrl: 'http://localhost:3000/profile/trip#',
-            cancelUrl: 'http://localhost:3000',
+            cancelUrl: 'http://localhost:3000/profile/trip#',
         });
     
     };
     
-
-
-    //function 
     const CreateTrip = () => {
 
         const [city, setCity] = useState('');

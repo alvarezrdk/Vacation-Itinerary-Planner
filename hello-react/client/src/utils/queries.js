@@ -2,18 +2,16 @@ import { gql } from '@apollo/client';
 
 
 export const QUERY_SINGLE_PROFILE = gql`
-  query singleProfile($profileId: ID!) {
-    profile(profileId: $profileId) {
-      _id
-      name
-      skills
+  query findProfile($username: String!) {
+    findProfile (username: $username) {
+      username
     }
   }
 `;
 
 export const QUERY_PROFILES = gql`
   query allProfiles {
-    profiles {
+    profile {
       _id
     }
   }
@@ -23,6 +21,7 @@ export const QUERY_ITINERARIES = gql`
 query allItineraries {
   itineraries {
     _id
+    username
     location
     startDate
     endDate
@@ -36,12 +35,20 @@ query allItineraries {
 }
 `;
 
-export const GET_ITINERARIES = gql`
-  query getItineraries($userId: ID!) {
-    itineraries(userId: $userId) {
-      _id
-      title
-      description
+export const GET_USER_ITINERARIES = gql`
+  query userItinerary($username: String!) {
+    userItinerary(username: $username) {
+    _id
+    username
+    location
+    startDate
+    endDate
+    guests
+    airbnbName
+    airbnbCheckInDate
+    airbnbCheckOutDate
+    restaurants
+    experiences
     }
   }
 `;
@@ -55,15 +62,6 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
-
-export const GET_USER_ITINERARY =gql`
-query getUserItineraries($userId: ID!) {
-  userItineraries(userId: $userId) {
-    id
-  }
-}
-`
-;
 
 export const GET_ITINERARY_DETAILS = gql`
 query getItineraryDetails($itineraryId: ID!) {

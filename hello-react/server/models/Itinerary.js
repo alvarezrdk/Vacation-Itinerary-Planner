@@ -1,6 +1,12 @@
 const { Schema, model } = require('mongoose');
 
 const itinerarySchema = new Schema({
+   
+    username: {
+        type: String,
+        required: true,
+        trim: true,
+    },   
     location: {
         type: String,
         required: true,
