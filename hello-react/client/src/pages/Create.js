@@ -6,15 +6,15 @@ import Auth from '../utils/auth';
 
 
 const Create = ({ }) => {
-  const [location, setLocation] = useState('Naples, FL');
-  const [startDate, setStartDate] = useState('2023-09-25');
-  const [endDate, setEndDate] = useState('2023-09-28');
-  const [guests, setGuests] = useState(3);
+  const [location, setLocation] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [guests, setGuests] = useState();
 
   const [createItinerary, { error }] = useMutation(CREATE_ITINERARY);
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
     const username = Auth.getToken2();
     try {
       const data = await createItinerary({

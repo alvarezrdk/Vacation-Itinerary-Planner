@@ -15,23 +15,37 @@ import { useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { GET_USER_ITINERARIES } from '../utils/queries';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Trip = (props) => {
     
     const newItinerary = props.itineraryList;
-    console.log(props);
+    const [ tripId, settripId ] = useState(''); 
 
     if (!props.itineraryList?.length) {
         return null;
     }
+
+    const handleItineraryClick = async (e) => {
+        
+        settripId(e.target.trip);
+        console.log(e.target.trip);
+        
+      };
 
     return (
         <div class="tripsItem">
             {newItinerary.map((item, idex) => ( 
             <div>
                 <div class="profileImageContainer">
-                    <img class="profileImage zoom" src={miami}></img>
+                <Link to={`/Profile/Trip/${item._id}`}>
+                    <img 
+                    class="profileImage zoom" 
+                    src={miami} 
+                    trip={item._id}
+                    />
+                </Link>
                 </div>
                 <div class="profileTripOverview">
                     <h1 className='zoom'>{item.location}</h1>
@@ -45,12 +59,8 @@ const Trip = (props) => {
 }
 
 const Profile = () => {
-
-    const { username: userParam } = useParams();
-        console.log(userParam);
     
     const username = Auth.getToken2();
-        console.log(username);
 
         const { loading, data } = useQuery(GET_USER_ITINERARIES, {
             variables: { username: username },
@@ -58,12 +68,9 @@ const Profile = () => {
 
         const itineraryList = data?.userItinerary;
 
-
-
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
     const CreateTrip = () => {
-
         
         if (modalIsOpen) {
             return (
@@ -129,7 +136,8 @@ const Profile = () => {
 
 
                 <div className='tripsContainer border'>
-                    <Trip itineraryList = {itineraryList} />
+                    <Trip itineraryList = {itineraryList} 
+                    />
                     <Trip city='Chicago' cityImage={chicago} date="Sep 25th - Sep 27th"></Trip>
                 </div>
 

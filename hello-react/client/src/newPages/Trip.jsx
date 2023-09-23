@@ -13,7 +13,12 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useMutation, gql } from '@apollo/client';
 import {ADD_AIRBNB_TO_ITINERARY} from '../../src/utils/mutations'
 
-const Trip = () => {
+const Trip = (props) => {
+
+    const tripId = useParams();
+    console.log(tripId);
+
+    
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [activityModalIsOpen, setActivityModalIsOpen] = useState(false)
