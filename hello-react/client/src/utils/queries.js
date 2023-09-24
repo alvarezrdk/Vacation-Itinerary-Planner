@@ -44,7 +44,7 @@ export const GET_USER_ITINERARIES = gql`
     startDate
     endDate
     guests
-    airbnbName
+    airbnbname
     airbnbCheckInDate
     airbnbCheckOutDate
     restaurants
@@ -72,7 +72,8 @@ query getItineraryDetails($_id: ID!) {
     startDate
     endDate
     guests
-    airbnbName
+    airbnbname
+    airbnbphoto
     airbnbCheckInDate
     airbnbCheckOutDate
     restaurants

@@ -78,9 +78,10 @@ export const ADD_EX_TO_ITINERARY = gql`
 `;
 
 export const ADD_AIRBNB_TO_ITINERARY = gql`
-  mutation addAirbnbToItinerary($itineraryId: ID!, $airbnbName: String!, $airbnbCheckInDate: String!, $airbnbCheckOutDate: String!) {
-    addAirbnbToItinerary(itineraryId: $itineraryId, airbnbName: $airbnbName, airbnbCheckInDate: $airbnbCheckInDate, airbnbCheckOutDate: $airbnbCheckOutDate) {
+  mutation addAirbnbToItinerary($_id: ID!, $airbnbId: String, $airbnbphoto: String, $airbnbname: String, $airbnbCheckInDate: String, $airbnbCheckOutDate: String, $airbnbguests: Int) {
+    addAirbnbToItinerary(_id: $_id, airbnbId: $airbnbId, airbnbphoto: $airbnbphoto, airbnbname: $airbnbname, airbnbCheckInDate: $airbnbCheckInDate, airbnbCheckOutDate: $airbnbCheckOutDate, airbnbguests: $airbnbguests) {
       _id
+      airbnbname
     }
   }
 `;

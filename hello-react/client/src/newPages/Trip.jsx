@@ -17,14 +17,12 @@ import { useQuery } from '@apollo/client';
 
 const Trip = () => {
 
-    const { id } = useParams();
-    console.log(id);
 
+    const { id } = useParams();
+    console.log('Itinerary '+id);
     const { data } = useQuery(GET_ITINERARY_DETAILS, {
         variables: { _id: id },
     })
-
-    console.log(data);
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [activityModalIsOpen, setActivityModalIsOpen] = useState(false)
@@ -39,6 +37,7 @@ const Trip = () => {
             lineItems: [{
                 price: "price_1NroUWG3HMx6NAFG0MVe6qg6", // Replace with the ID of your price
                 quantity: 5,
+
             }],
             mode: 'payment',
             successUrl: 'http://localhost:3000/profile/trip#',
@@ -50,9 +49,9 @@ const Trip = () => {
     const CreateTrip = () => {
 
         const [city, setCity] = useState('');
-        const [startDate, setstartDate] = useState(Date);
-        const [endDate, setendDate] = useState(Date);
-        const [people, setpeople] = useState(Number);
+        const [startDate, setstartDate] = useState('');
+        const [endDate, setendDate] = useState('');
+        const [people, setpeople] = useState('');
         const [listing, setListing] = useState();
         const [homes, setHomes] = useState();
 
@@ -65,23 +64,40 @@ const Trip = () => {
             people: ''
         }
 
+        
         const searchProperty = async (query) => {
             const response = await property(query)
             setListing(response)
             console.log(response)
             setHomes(response.data.homes);
-            console.log(homes);
+            console.log(response.data.homes);
         }
+
+        if (!data) {
+        } else {
+            if ( city  === '') {
+                setCity(data.getItineraryDetails.location);
+            }      
+            if ( people === '' ) {
+                setpeople(data.getItineraryDetails.guests);
+            }
+            if ( startDate === '' ) {
+                setstartDate(data.getItineraryDetails.startDate);
+            }
+            if ( endDate === '' ) {
+                setendDate(data.getItineraryDetails.endDate);
+            }}
 
         const handleInputChange_city = (e) => setCity(e.target.value);
         const handleInputChange_startDate = (e) => setstartDate(e.target.value);
         const handleInputChange_endDate = (e) => setendDate(e.target.value);
         const handleInputChange_people = (e) => setpeople(e.target.value);
+
         const [airbnbValues] = useMutation(ADD_AIRBNB_TO_ITINERARY);
 
         const handleFormSubmit = (e) => {
             e.preventDefault()
-            query.city = { city }
+            query.city =  { city } 
             query.startDate = { startDate }
             query.endDate = { endDate }
             query.people = { people }
@@ -89,28 +105,37 @@ const Trip = () => {
             searchProperty(query);
         };
 
-        const payment = () => {}
-
         const handleFormAdd = (e) => {
             e.preventDefault()
-            setlistingId(e.target.value);
-            console.log(listingId);
-
-            
+            // setlistingId(e.target.id);
+            // console.log(e);
+            // console.log(id);
+            // console.log(e.target.id);
+            // console.log(e.target.name);
+            // console.log(e.target.attributes.addr.value);
+            // console.log(people);
+            // console.log(startDate);
+            // console.log(endDate);
 
             airbnbValues({
                 variables: {
-                _id: 1234,
-                guests: query.people,
-                airbnbName: query.name,
-                airbnbCheckInDate: query.startDate,
-                airbnbCheckOutDate: query.endDate
+                _id: id,
+                airbnbId: e.target.id,
+                airbnbphoto: e.target.attributes.addr.value,
+                airbnbguests: people,
+                airbnbname: e.target.name,
+                airbnbCheckInDate: startDate,
+                airbnbCheckOutDate: endDate,
+                airbnbguests: people
                 }
             })
 
+            setModalIsOpen((prevState) => !prevState)
         };
 
+             
         if (modalIsOpen) {
+                      
             return (
                 <div>
                     <div className='createNewTripBlur'>
@@ -123,13 +148,13 @@ const Trip = () => {
                             </a>
 
                             <SearchForm
-                                city={city}
+                                city={ city }
                                 handleInputChange_city={handleInputChange_city}
-                                people={people}
+                                people={ people }
                                 handleInputChange_people={handleInputChange_people}
-                                startDate={startDate}
+                                startDate={ startDate }
                                 handleInputChange_startDate={handleInputChange_startDate}
-                                endDate={endDate}
+                                endDate={ endDate }
                                 handleInputChange_endDate={handleInputChange_endDate}
                                 
                                 handleFormSubmit={handleFormSubmit}
@@ -139,6 +164,7 @@ const Trip = () => {
                                 {listing ? (
                                     <PropertyDetail
                                         list={homes}
+                                        profileId= {id}
                                     handleFormAdd = { handleFormAdd }
                                     />
                                 ) : (
@@ -270,7 +296,9 @@ const Trip = () => {
         }
 
     }
+    
     return (
+        
         
         <>
             <CreateActivity></CreateActivity>
@@ -310,15 +338,17 @@ const Trip = () => {
                         </MenuSideBarItem>
                     </div>
                     <div className='menuMainInfo'>
+                    {data && data.getItineraryDetails && (
                         <div className='menuMainInfoImageContainer'>
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
-
+                            
                                 <h1>Trip To {data.getItineraryDetails.location}</h1>
                                 <p>From {data.getItineraryDetails.startDate} To {data.getItineraryDetails.endDate}</p>
 
                             </div>
                         </div>
+                    )}
                         <div className='menuMainInfoItemShaded'>
                             <h1 className='menuMainInfoTitle'>Overview</h1>
                         </div>

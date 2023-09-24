@@ -12,13 +12,16 @@ const typeDefs = gql`
   type Itinerary {
     _id: ID
     username: String
-    location: String!
+    location: String
     guests: Int
-    startDate: String!
-    endDate: String!
-    airbnbName: String
+    startDate: String
+    endDate: String
+    airbnbId: String
+    airbnbphoto:String
+    airbnbname: String
     airbnbCheckInDate: String
     airbnbCheckOutDate: String
+    airbnbguests: Int
     restaurants: [String]
     experiences: [String]
   }
@@ -52,7 +55,7 @@ const typeDefs = gql`
     allProfiles: [Profile]!
     findProfile(username: String!): Profile
     allItineraries: [Itinerary]!
-    userItinerary(username: String!): [Itinerary]!
+    userItinerary(username: String!): [Itinerary]
     getItineraryDetails(_id: ID!): Itinerary
     restaurantsByLocation(location: String!): [Restaurants]
 
@@ -75,8 +78,13 @@ const typeDefs = gql`
       exId: ID!
     ): Itinerary
     addAirbnbToItinerary(
-      itineraryId: ID!
-      airbnbName: ID!
+      _id: ID!,
+      airbnbId: String,
+      airbnbname: String,
+      airbnbphoto: String,
+      airbnbCheckInDate: String,
+      airbnbCheckOutDate: String,
+      airbnbguests: Int
     ): Itinerary
     deleteItinerary(itineraryId: ID!): Itinerary
     deleteRestaurant(restaurantId: ID!): Restaurants
