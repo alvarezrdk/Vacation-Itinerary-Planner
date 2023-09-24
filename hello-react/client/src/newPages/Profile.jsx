@@ -100,7 +100,7 @@ const Profile = () => {
                     <div className='profileItem'>
                         <h1>{username}</h1>
                         <h2>About me!</h2>
-                        <p>Hi my name is {username}, I have a cat and I like to code!</p>
+                        <p>Hi {username}, Where you want go Next!</p>
                     </div>
                 </div>
                 <div className='profileCategory border'>

@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client';
 import {ADD_USER, LOGIN_USER} from '../../src/utils/mutations';
 import Auth from '../utils/auth';
 
+
 const Signup = () => {
 
     const [newUser, setnewUser] = useState({
@@ -12,6 +13,7 @@ const Signup = () => {
         password: '',
         email: 'shui@gmail.com'
     });
+
     const [addUser] = useMutation(ADD_USER);
 
     const handleInputChangenewUser = (e) => {
@@ -23,7 +25,7 @@ const Signup = () => {
 
     const handleSignUpSubmit = async (e) => {
         e.preventDefault();
-        console.log('Register Click');        
+        // console.log('Register Click');        
         try {
             console.log(newUser);
             const { data } = await addUser({
@@ -32,6 +34,7 @@ const Signup = () => {
             });
         console.log(data);    
         Auth.login(data.addUser.token);
+        Auth.login2(data.login.profile.username);
         } 
         catch (e) { console.error(e);
         }
@@ -41,6 +44,7 @@ const Signup = () => {
         username: '',
         password: '',
     });
+
     const [userLogin, { error, data }] = useMutation(LOGIN_USER)
     
     const handleInputChangeloginUser = (e) => {
@@ -65,13 +69,6 @@ const Signup = () => {
           } catch (e) {
             console.error(e);
           }
-          
-
-        //   setloginUser({
-        //     username: '',
-        //     password: '',
-        //   });
-          
     }
 
     return (
@@ -110,7 +107,7 @@ const Signup = () => {
                         </div>
                     </form>
                 </div>
-                {/* <div className='signupLoginSub'>
+                <div className='signupLoginSub'>
                     <h2 className='signupLoginTitle'>Signup</h2>
                     <form>
                         <div className='formSub'>
@@ -118,7 +115,7 @@ const Signup = () => {
                             className='formSubInput' 
                             placeholder='Username' 
                             type="text"
-                            name="username1"
+                            name="username"
                             onChange={handleInputChangenewUser}
                             value={newUser.username}
                             />
@@ -128,7 +125,7 @@ const Signup = () => {
                             className='formSubInput' 
                             placeholder='Password' 
                             type="password"
-                            name="password1"
+                            name="password"
                             onChange={handleInputChangenewUser}
                             value={newUser.password}
                             />
@@ -141,7 +138,7 @@ const Signup = () => {
                             >Register</button>
                         </div>
                     </form>
-                </div> */}
+                </div>
             </div>
         </>
     )

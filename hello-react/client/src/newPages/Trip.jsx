@@ -15,11 +15,44 @@ import {ADD_AIRBNB_TO_ITINERARY} from '../../src/utils/mutations'
 import { GET_ITINERARY_DETAILS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
+const AirbnbAccommodation = (props) => {
+    
+    const airbnbItem = props.accommodation;
+    console.log(airbnbItem);
+
+    if (!airbnbItem.airbnbname?.length) {
+        return null;
+    }
+
+    return (
+        <div class="tripsItem">
+            {/* {accommodationList.map((item, index) => (  */}
+            <div>
+                <div class="profileImageContainer">
+                    <img 
+                    class="profileImage zoom" 
+                    src={airbnbItem.airbnbphoto}
+                    key={(airbnbItem.airbnbId)}
+                    />
+                </div>
+                <div class="profileTripOverview">
+                    <h1 className='zoom' >{airbnbItem.location} </h1>
+                    <h2 >{airbnbItem.airbnbname} </h2>
+                    <h2 >{airbnbItem.startDate} </h2>
+                </div>
+            </div>
+            {/* ))} */}
+        </div>
+    )
+}
+
+
+
 const Trip = () => {
 
 
     const { id } = useParams();
-    console.log('Itinerary '+id);
+    // console.log('Itinerary '+id);
     const { data } = useQuery(GET_ITINERARY_DETAILS, {
         variables: { _id: id },
     })
@@ -131,6 +164,8 @@ const Trip = () => {
             })
 
             setModalIsOpen((prevState) => !prevState)
+            window.location.reload();
+            
         };
 
              
@@ -370,8 +405,14 @@ const Trip = () => {
                             <MenuMainOverviewItem
                                 title="Accomodations"
                             >
+                                {data && data.getItineraryDetails && ( 
+                                <div className='tripsContainer border'>
+                                <AirbnbAccommodation accommodation = {data.getItineraryDetails} />
+                                </div>
+                            )}
                                 <button className='addNewAccomodationsButton' onClick={() => { setModalIsOpen((prevState) => !prevState) }}>Add New Accomodations</button>
                                 <button className='addNewAccomodationsButton' onClick={payment}>Pay for Accomodations</button>
+                                
                             </MenuMainOverviewItem>
                         </div>
                         <div className='menuMainInfoItemShaded'>
