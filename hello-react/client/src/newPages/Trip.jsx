@@ -12,13 +12,19 @@ import SearchForm from '../components/Search/SearchForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { useMutation, gql } from '@apollo/client';
 import {ADD_AIRBNB_TO_ITINERARY} from '../../src/utils/mutations'
+import { GET_ITINERARY_DETAILS } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
-const Trip = (props) => {
+const Trip = () => {
 
-    const tripId = useParams();
-    console.log(tripId);
+    const { id } = useParams();
+    console.log(id);
 
-    
+    const { data } = useQuery(GET_ITINERARY_DETAILS, {
+        variables: { _id: id },
+    })
+
+    console.log(data);
 
     const [modalIsOpen, setModalIsOpen] = useState(false)
     const [activityModalIsOpen, setActivityModalIsOpen] = useState(false)
@@ -119,12 +125,13 @@ const Trip = (props) => {
                             <SearchForm
                                 city={city}
                                 handleInputChange_city={handleInputChange_city}
+                                people={people}
+                                handleInputChange_people={handleInputChange_people}
                                 startDate={startDate}
                                 handleInputChange_startDate={handleInputChange_startDate}
                                 endDate={endDate}
                                 handleInputChange_endDate={handleInputChange_endDate}
-                                people={people}
-                                handleInputChange_people={handleInputChange_people}
+                                
                                 handleFormSubmit={handleFormSubmit}
                             />
 
@@ -307,8 +314,8 @@ const Trip = (props) => {
                             <img src={miami} className='menuMainInfoImage'></img>
                             <div className='menuMainInfoImageCard'>
 
-                                <h1>Trip To Naples</h1>
-                                <p>From 9/22/2023 To 9/27/2023</p>
+                                <h1>Trip To {data.getItineraryDetails.location}</h1>
+                                <p>From {data.getItineraryDetails.startDate} To {data.getItineraryDetails.endDate}</p>
 
                             </div>
                         </div>

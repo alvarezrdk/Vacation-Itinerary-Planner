@@ -16,6 +16,9 @@ const resolvers = {
     userItinerary: async (parent, { username }) => {
       return Itinerary.find({ username: username });
     },
+    getItineraryDetails: async (parent, { _id }) => {
+      return Itinerary.findOne({ _id: _id });
+    },
     // Query to get all restaurants in a specific location
     restaurantsByLocation: async (parent, { location }) => {
       return Restaurants.find({ location });

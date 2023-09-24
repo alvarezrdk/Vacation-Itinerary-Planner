@@ -64,33 +64,22 @@ export const GET_USER_PROFILE = gql`
 `;
 
 export const GET_ITINERARY_DETAILS = gql`
-query getItineraryDetails($itineraryId: ID!) {
-  itineraryDetails(itineraryId: $itineraryId) {
-    id
-    title
-    description
-    destinations {
-      id
-      location
-      startDate
-      endDate
-    }
-    restaurantReservations {
-      id
-      restaurantName
-      reservationDate
-      numberOfGuests
-    }
-    bnbReservations {
-      id
-      bnbName
-      checkInDate
-      checkOutDate
+query getItineraryDetails($_id: ID!) {
+  getItineraryDetails(_id: $_id) {
+    _id
+    username
+    location
+    startDate
+    endDate
+    guests
+    airbnbName
+    airbnbCheckInDate
+    airbnbCheckOutDate
+    restaurants
+    experiences
     }
   }
-}
-`
-;
+`;
 
 export const GET_BNB_RESERVATION = gql`
 query getBnbReservations($itineraryId: ID!) {

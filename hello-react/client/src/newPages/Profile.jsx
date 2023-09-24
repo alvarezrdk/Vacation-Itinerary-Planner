@@ -21,22 +21,14 @@ import { Link } from 'react-router-dom';
 const Trip = (props) => {
     
     const newItinerary = props.itineraryList;
-    const [ tripId, settripId ] = useState(''); 
 
     if (!props.itineraryList?.length) {
         return null;
     }
 
-    const handleItineraryClick = async (e) => {
-        
-        settripId(e.target.trip);
-        console.log(e.target.trip);
-        
-      };
-
     return (
         <div class="tripsItem">
-            {newItinerary.map((item, idex) => ( 
+            {newItinerary.map((item, index) => ( 
             <div>
                 <div class="profileImageContainer">
                 <Link to={`/Profile/Trip/${item._id}`}>
@@ -44,12 +36,13 @@ const Trip = (props) => {
                     class="profileImage zoom" 
                     src={miami} 
                     trip={item._id}
+                    key={`pic-${index}`}
                     />
                 </Link>
                 </div>
                 <div class="profileTripOverview">
-                    <h1 className='zoom'>{item.location}</h1>
-                    <h2>{item.startDate}</h2>
+                    <h1 className='zoom' key={`loc-${index}`}>{item.location} </h1>
+                    <h2 key={`sDate-${index}`}>{item.startDate} </h2>
                     <p class="profileTripAbout">Add Comments!</p>
                 </div>
             </div>
@@ -62,7 +55,7 @@ const Profile = () => {
     
     const username = Auth.getToken2();
 
-        const { loading, data } = useQuery(GET_USER_ITINERARIES, {
+        const { data } = useQuery(GET_USER_ITINERARIES, {
             variables: { username: username },
         });
 

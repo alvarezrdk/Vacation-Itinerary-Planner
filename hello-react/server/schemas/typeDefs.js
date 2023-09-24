@@ -53,6 +53,7 @@ const typeDefs = gql`
     findProfile(username: String!): Profile
     allItineraries: [Itinerary]!
     userItinerary(username: String!): [Itinerary]!
+    getItineraryDetails(_id: ID!): Itinerary
     restaurantsByLocation(location: String!): [Restaurants]
 
     # Because we have the context functionality in place to check a JWT and decode its data, we can use a query that will always find and return the logged in user's data
