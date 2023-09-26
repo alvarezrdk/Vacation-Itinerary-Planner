@@ -159,7 +159,6 @@ const Trip = () => {
                 airbnbname: e.target.name,
                 airbnbCheckInDate: startDate,
                 airbnbCheckOutDate: endDate,
-                airbnbguests: people
                 }
             })
 
